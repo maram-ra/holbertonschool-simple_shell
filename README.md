@@ -16,11 +16,11 @@ It mimics the basic functionalities of the shell and helps understand low-level 
 
 ## Table of Contents
 
- -[Features](#features)
- -[Flowchart](#flowchart)
- -[How to Use](#how-to-use)
- -[Installation](#installation)
--[Authors](#authors)
+[Features](#features)  
+[Flowchart](#flowchart)  
+[How to Use](#how-to-use)  
+[Installation](#installation)  
+[Authors](#authors)
 
 ---
 
