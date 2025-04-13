@@ -1,2 +1,5 @@
-# holbertonschool-simple_shell
-Simple shell created as a project for Holberton School by Hessah Alotyash &amp;  Maram Alsofyani
+
+
+<p align="center">
+  <img src="./images/shell_project.png" width="300"/>
+</p>
