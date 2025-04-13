@@ -25,16 +25,38 @@ This simple shell was created by maram and Hessah as a project for Holberton Sch
 ---
 
 
+# 🐚 Simple Shell
 
-## Flowchart
+A simple UNIX command line interpreter written in C, as part of the Holberton School low-level programming curriculum.
 
-<p align="center">
-  <img src="https://github.com/maram-ra/holbertonschool-simple_shell/blob/b3627e8b4d1893be96269ee00e5d598c44b05d49/232889814-c96b5a35-7032-4b5c-8e06-4263eb0f5c2f.png"/>
-</p>
+Created by **Hessah Alotyash** and **Maram Alsofyani** 🤍
 
-## File Structure
+---
 
+## 🧠 What It Does
 
+This shell:
+- Displays a prompt and waits for user input
+- Executes commands like `/bin/ls`, `pwd`, `echo Hello`
+- Handles commands with arguments (`ls -l`, `echo text`)
+- Uses the `PATH` environment to find executables (`ls`, `env`)
+- Supports built-in commands: `exit`, `env`
+- Works in both **interactive** and **non-interactive** mode
+
+---
+
+## 🖼️ Shell Flowchart
+
+This diagram shows how the shell works internally:
+
+![Shell Flowchart](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/image.png)
+
+---
+
+## 🛠️ How to Compile
+
+```bash
+gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 
 
 </div>
