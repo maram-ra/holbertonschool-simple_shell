@@ -9,9 +9,9 @@
 
 ## Description
 
-This simple shell was created by **Maram** and **Hussa** as part of a project at [Holberton School of Computer Science](https://www.holbertonschool.com/).
+This simple shell was created by maram and Hessah as a project for Holberton School of Computer Science. It is a simple UNIX command interpreter written in the C programming language. The program uses bash commands it retrieves from the command line interface (CLI) that are inputed by the user. The shell can be run in interactive and non interactive mode as shown below.
 
-It is a basic UNIX command-line interpreter written in C that mimics the behavior of `/bin/sh`. The shell reads user commands, executes them using system calls, and supports both interactive and non-interactive modes.
+
 ---
 
 
