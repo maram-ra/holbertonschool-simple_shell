@@ -41,5 +41,6 @@ int main(int argc, char **argv)
 	}
 
 	free(line);
-	return (0);
+	return (status);
+
 }
