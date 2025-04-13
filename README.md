@@ -3,7 +3,7 @@
 # 🐚 Holberton Simple Shell
 
 
-  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcno3M2dmenpscDIzODIyc3I5N3BvZWNmM3k4emdmNWZ3ZWgxemt3dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QDjpIL6oNCVZ4qzGs7/giphy.gif" width="400">
+  <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWdmZ2Fsb2s5YThpem11dXA0YnJ2dXNsdmp0cjFkeHEzb3FiZzB1bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13HgwGsXF0aiGY/giphy.gif" width="400">
 
 ## Table of Contents
 <div align="center">
