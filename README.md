@@ -5,7 +5,18 @@
 
   <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcno3M2dmenpscDIzODIyc3I5N3BvZWNmM3k4emdmNWZ3ZWgxemt3dCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QDjpIL6oNCVZ4qzGs7/giphy.gif" width="400">
 
+## Table of Contents
+<div align="center">
 
+<a href="#description">Description</a><br>
+<a href="#flowchart">Flowchart</a><br>
+<a href="#file-structure">File Structure</a><br>
+<a href="#system-and-library-calls">System and Library calls</a><br>
+<a href="#installation">Installation</a><br>
+<a href="#example-of-use">Example of Use</a><br>
+<a href="#authors">Authors</a>
+
+</div>
 
 
 ## Description
