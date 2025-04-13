@@ -10,8 +10,6 @@
 
 <a href="#description">Description</a><br>
 <a href="#flowchart">Flowchart</a><br>
-<a href="#file-structure">File Structure</a><br>
-<a href="#system-and-library-calls">System and Library calls</a><br>
 <a href="#installation">Installation</a><br>
 <a href="#example-of-use">Example of Use</a><br>
 <a href="#authors">Authors</a>
