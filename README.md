@@ -30,6 +30,8 @@ This shell:
 
 This diagram shows how the shell works internally:
 
+![image](https://github.com/user-attachments/assets/aefc5416-9cf8-4ad0-bf3a-470029c3bc33)
+
 ---
 
 ## 🛠️ How to Compile
