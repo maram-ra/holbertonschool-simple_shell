@@ -1,0 +1,32 @@
+.TH hsh 1 "April 2025" "1.0" "Simple Shell Manual"
+.SH NAME
+hsh \- simple UNIX command line interpreter
+.SH SYNOPSIS
+.B hsh
+.SH DESCRIPTION
+hsh is a basic UNIX shell that supports command execution with arguments,
+environment variable usage (PATH), and built-in commands.
+
+.SH USAGE
+.TP
+Start the shell:
+.B ./hsh
+
+.TP
+Type a command and press Enter:
+.B /bin/ls
+
+.TP
+Exit the shell:
+.B exit
+
+.TP
+Print environment variables:
+.B env
+
+.SH AUTHORS
+Maram Alsofyani and Hessah Alotaysh
+
+.SH SEE ALSO
+.BR sh (1),
+.BR bash (1)
