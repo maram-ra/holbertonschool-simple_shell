@@ -30,8 +30,6 @@ This shell:
 
 This diagram shows how the shell works internally:
 
-![Shell Flowchart](https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/image.png)
-
 ---
 
 ## 🛠️ How to Compile
@@ -40,4 +38,3 @@ This diagram shows how the shell works internally:
 gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 
 
-</div>
