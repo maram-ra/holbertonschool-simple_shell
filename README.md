@@ -6,14 +6,14 @@
 
 
 
-## 📌 Description
+##  Description
 
 This project is a simple UNIX command interpreter built as part of the Holberton School curriculum.  
 It mimics the basic functionalities of the shell and helps understand low-level system programming in C.
 
 ---
 
-## 🗂️ Table of Contents
+## Table of Contents
 
 - [Features](#features)
 - [Flowchart](#flowchart)
@@ -23,7 +23,7 @@ It mimics the basic functionalities of the shell and helps understand low-level 
 
 ---
 
-## ✨ Features
+## Features
 
 - Command execution with arguments
 - Path resolution
@@ -33,7 +33,7 @@ It mimics the basic functionalities of the shell and helps understand low-level 
 
 ---
 
-## 🔄 Flowchart
+## Flowchart
 
 <p align="center">
   <img src="https://github.com/maram-ra/holbertonschool-simple_shell/blob/b3627e8b4d1893be96269ee00e5d598c44b05d49/232889814-c96b5a35-7032-4b5c-8e06-4263eb0f5c2f.png"/>
@@ -41,10 +41,4 @@ It mimics the basic functionalities of the shell and helps understand low-level 
 
 ---
 
-## 🧪 How to Use
 
-```bash
-git clone https://github.com/yourusername/holbertonschool-simple_shell.git
-cd holbertonschool-simple_shell
-make
-./hsh
