@@ -9,9 +9,9 @@
 
 ## Description
 
-This project is a simple UNIX command interpreter built as part of the Holberton School curriculum.  
-It mimics the basic functionalities of the shell and helps understand low-level system programming in C.
+This simple shell was created by **Maram** and **Hussa** as part of a project at [Holberton School of Computer Science](https://www.holbertonschool.com/).
 
+It is a basic UNIX command-line interpreter written in C that mimics the behavior of `/bin/sh`. The shell reads user commands, executes them using system calls, and supports both interactive and non-interactive modes.
 ---
 
 
