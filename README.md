@@ -5,17 +5,6 @@
 
   <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcG5zNDhlc2RpYmpsZ3hoeWU2bXBtdTE2MHFtN2JlZXQ1cTVsYWxvZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QDjpIL6oNCVZ4qzGs7/giphy.gif" width="400">
 
-## Table of Contents
-<div align="center">
-
-<a href="#description">Description</a><br>
-<a href="#flowchart">Flowchart</a><br>
-<a href="#installation">Installation</a><br>
-<a href="#example-of-use">Example of Use</a><br>
-<a href="#authors">Authors</a>
-
-</div>
-
 
 ## Description
 
@@ -24,14 +13,6 @@ This simple shell was created by maram and Hessah as a project for Holberton Sch
 
 ---
 
-
-# 🐚 Simple Shell
-
-A simple UNIX command line interpreter written in C, as part of the Holberton School low-level programming curriculum.
-
-Created by **Hessah Alotyash** and **Maram Alsofyani** 🤍
-
----
 
 ## 🧠 What It Does
 
