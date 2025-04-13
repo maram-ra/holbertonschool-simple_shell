@@ -34,4 +34,18 @@ This simple shell was created by maram and Hessah as a project for Holberton Sch
   <img src="https://github.com/maram-ra/holbertonschool-simple_shell/blob/b3627e8b4d1893be96269ee00e5d598c44b05d49/232889814-c96b5a35-7032-4b5c-8e06-4263eb0f5c2f.png"/>
 </p>
 
+## File
+
+| File                | Content / Functions                                                                 | Description                                                                                   |
+|---------------------|-------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| `shell.h`           | Header of the project                                                              | Contains structures, prototypes, macros, and external variables.                              |
+| `shell.c`           | `int main()`                                                                        | Main loop: receives input from CLI, parses and executes it.                                   |
+| `tokenizers.c`      | `char **hsh_tokenizer()`, `char **tokenizer_path()`                                 | Splits input into tokens and splits `PATH` into an array of paths.                            |
+| `validators.c`      | `char *validate_input()`, `int validate_spaces()`                                   | Validates input and existence of `PATH`; checks for spaces, tabs, and line breaks.            |
+| `exe_command.c`     | `int hsh_execute()`, `int hsh_execute_builtins()`                                   | Forks process and runs commands or built-ins.                                                 |
+| `builtins.c`        | `hsh_cd()`, `hsh_setenv()`, `hsh_unsetenv()`, `hsh_env()`, `hsh_exit()`             | Built-in commands: change directory, manage environment variables, print environment, exit.   |
+| `the_helpers.c`     | `char *str_concat()`, `void *_realloc()`                                            | Helper functions: string concatenation and memory reallocation.                               |
+Structure
+
+
 </div>
