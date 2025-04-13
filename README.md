@@ -40,11 +40,19 @@ This simple shell was created by maram and Hessah as a project for Holberton Sch
 |---------------------|-------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
 | `shell.h`           | Header of the project                                                              | Contains structures, prototypes, macros, and external variables.                              |
 | `shell.c`           | `int main()`                                                                        | Main loop: receives input from CLI, parses and executes it.                                   |
-| `tokenizers.c`      | `char **hsh_tokenizer()`, `char **tokenizer_path()`                                 | Splits input into tokens and splits `PATH` into an array of paths.                            |
-| `validators.c`      | `char *validate_input()`, `int validate_spaces()`                                   | Validates input and existence of `PATH`; checks for spaces, tabs, and line breaks.            |
-| `exe_command.c`     | `int hsh_execute()`, `int hsh_execute_builtins()`                                   | Forks process and runs commands or built-ins.                                                 |
-| `builtins.c`        | `hsh_cd()`, `hsh_setenv()`, `hsh_unsetenv()`, `hsh_env()`, `hsh_exit()`             | Built-in commands: change directory, manage environment variables, print environment, exit.   |
-| `the_helpers.c`     | `char *str_concat()`, `void *_realloc()`                                            | Helper functions: string concatenation and memory reallocation.                               |
+| `tokenizers.c`      | `char **hsh_tokenizer()`, `char **tokenizer_path()`                                 |Split the input string into a array of tokens.
+Split the environment variable PATH into an array of tokens.                           |
+| `validators.c`      | `char *validate_input()`, `int validate_spaces()`                                   |Validate if PATH exists
+Validate spaces, tabs and line breaks.           |
+| `exe_command.c`     | `int hsh_execute()`, `int hsh_execute_builtins()`                                   | Fork process and replace the child with a new program.
+Choose from an array of builtin functions.                                                 |
+| `builtins.c`        | `hsh_cd()`, `hsh_setenv()`, `hsh_unsetenv()`, `hsh_env()`, `hsh_exit()`             |Change directory.
+Change or add and environment variable.
+Delete an environment variable from the environment.
+Print the environment variables list.
+Terminate the main loop and exit the shell.   |
+| `the_helpers.c`     | `char *str_concat()`, `void *_realloc()`                                            |                   Concatenate two strings.
+Reallocate a memory block.             |
 Structure
 
 
