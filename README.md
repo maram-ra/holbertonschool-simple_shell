@@ -5,9 +5,6 @@
 </p>
 
 
-<p align="center">
-  <img src="https://github.com/maram-ra/holbertonschool-simple_shell/blob/b3627e8b4d1893be96269ee00e5d598c44b05d49/232889814-c96b5a35-7032-4b5c-8e06-4263eb0f5c2f.png"/>
-</p>
 
 ## 📌 Description
 
@@ -39,7 +36,7 @@ It mimics the basic functionalities of the shell and helps understand low-level 
 ## 🔄 Flowchart
 
 <p align="center">
-  <img src="https://link.to/your/flowchart.png" width="600" alt="Shell Flowchart">
+  <img src="https://github.com/maram-ra/holbertonschool-simple_shell/blob/b3627e8b4d1893be96269ee00e5d598c44b05d49/232889814-c96b5a35-7032-4b5c-8e06-4263eb0f5c2f.png"/>
 </p>
 
 ---
