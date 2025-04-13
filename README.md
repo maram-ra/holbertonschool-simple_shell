@@ -1,3 +1,4 @@
+<div align="center">
 # 🐚 Holberton Simple Shell
 
 <p align="center">
@@ -40,5 +41,5 @@ It mimics the basic functionalities of the shell and helps understand low-level 
 </p>
 
 ---
-
+</div>
 
