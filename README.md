@@ -17,12 +17,12 @@ This simple shell was created by maram and Hessah as a project for Holberton Sch
 ## 🧠 What It Does
 
 This shell:
-- Displays a prompt and waits for user input
-- Executes commands like `/bin/ls`, `pwd`, `echo Hello`
-- Handles commands with arguments (`ls -l`, `echo text`)
-- Uses the `PATH` environment to find executables (`ls`, `env`)
-- Supports built-in commands: `exit`, `env`
-- Works in both **interactive** and **non-interactive** mode
+ Displays a prompt and waits for user input
+ Executes commands like `/bin/ls`, `pwd`, `echo Hello`
+ Handles commands with arguments (`ls -l`, `echo text`)
+ Uses the `PATH` environment to find executables (`ls`, `env`)
+ Supports built-in commands: `exit`, `env`
+ Works in both **interactive** and **non-interactive** mode
 
 ---
 
