@@ -40,7 +40,3 @@ This diagram shows how the shell works internally:
 gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 
 
-## Authors
-
-- [Maram](https://github.com/maram-ra)
-- [Hessah](https://github.com/hessah)
