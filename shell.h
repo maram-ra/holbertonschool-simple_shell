@@ -12,16 +12,19 @@
 
 /* ==== MACROS ==== */
 #define MAX_ARGS 64
+#define _GNU_SOURCE
 
 /* ==== GLOBAL VARIABLES ==== */
 extern char **environ;
 
 /* ==== FUNCTION PROTOTYPES ==== */
-
-/* main.c */
+int main(void);
 int only_spaces(char *s);
+char *read_line(void);
+int only_spaces(char *s);
+void parse_arguments(char *line, char **args);
+char *find_command_path(char *command);
+void execute_command(char *command_path, char **args);
 
-/* path.c */
-char *find_command(char *cmd);
 
 #endif /* SHELL_H */
