@@ -7,7 +7,7 @@
  *
  * Return: Full path to the command, or NULL if not found
  */
-char *find_command(char *cmd)
+char *find_command_path(char *cmd)
 {
 	char *path = getenv("PATH");
 	char *token, *full_path;
