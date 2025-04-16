@@ -1,5 +1,6 @@
 #include "shell.h"
 
+int last_status = 0;
 /**
  * handle_command - Handles execution of a command
  * @args: Array of arguments
@@ -12,13 +13,13 @@ void handle_command(char **args)
 
 	if (args[0][0] == '/' || args[0][0] == '.')
 	{
-		/* direct path or relative */
 		if (access(args[0], X_OK) == 0)
 			path_cmd = strdup(args[0]);
 		else
 		{
 			fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
-			exit(127);
+			last_status = 127;
+			return;
 		}
 	}
 	else
@@ -27,7 +28,8 @@ void handle_command(char **args)
 		if (!path_cmd)
 		{
 			fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
-			exit(127);
+			last_status = 127;
+			return;
 		}
 	}
 
@@ -36,21 +38,22 @@ void handle_command(char **args)
 	{
 		perror("fork failed");
 		free(path_cmd);
-		exit(EXIT_FAILURE);
+		last_status = 1;
+		return;
 	}
 
 	if (pid == 0)
 	{
-		if (execve(path_cmd, args, environ) == -1)
-		{
-			fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
-			free(path_cmd);
-			exit(127);
-		}
+		execve(path_cmd, args, environ);
+		fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
+		free(path_cmd);
+		exit(127);
 	}
 	else
 	{
 		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+			last_status = WEXITSTATUS(status);
 		free(path_cmd);
 	}
 }
@@ -82,5 +85,6 @@ int main(void)
 		free(line);
 	}
 
-	return (0);
+	return (last_status);
 }
+
