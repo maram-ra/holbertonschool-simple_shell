@@ -40,8 +40,8 @@ char *read_line(void)
 
 	if (only_spaces(line))
 	{
-		free(line);
-		return (_strdup(""));
+	free(line);
+	return (NULL);
 	}
 
 	return (line);

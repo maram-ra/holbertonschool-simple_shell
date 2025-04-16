@@ -10,18 +10,25 @@ void handle_command(char **args)
 	pid_t pid;
 	int status;
 
-	/* إذا المسار مباشر (يبدأ بـ / أو .) */
 	if (args[0][0] == '/' || args[0][0] == '.')
-		path_cmd = strdup(args[0]);
-	else
-		path_cmd = find_command_path(args[0]);
-
-	/* تحقق من صلاحية التنفيذ */
-	if (!path_cmd || access(path_cmd, X_OK) != 0)
 	{
-		fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
-		free(path_cmd);
-		return;
+		/* direct path or relative */
+		if (access(args[0], X_OK) == 0)
+			path_cmd = strdup(args[0]);
+		else
+		{
+			fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
+			exit(127);
+		}
+	}
+	else
+	{
+		path_cmd = find_command_path(args[0]);
+		if (!path_cmd)
+		{
+			fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
+			exit(127);
+		}
 	}
 
 	pid = fork();
@@ -29,15 +36,17 @@ void handle_command(char **args)
 	{
 		perror("fork failed");
 		free(path_cmd);
-		return;
+		exit(EXIT_FAILURE);
 	}
 
 	if (pid == 0)
 	{
-		execve(path_cmd, args, environ);
-		fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
-		free(path_cmd);
-		exit(127);
+		if (execve(path_cmd, args, environ) == -1)
+		{
+			fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
+			free(path_cmd);
+			exit(127);
+		}
 	}
 	else
 	{
@@ -46,11 +55,10 @@ void handle_command(char **args)
 	}
 }
 
-
 /**
  * main - Entry point for the simple shell
  *
- * Return: Always 0 on success
+ * Return: Always 0
  */
 int main(void)
 {
@@ -63,7 +71,7 @@ int main(void)
 			write(STDOUT_FILENO, "$ ", 2);
 
 		line = read_line();
-		if (line == NULL)
+		if (!line)
 			break;
 
 		parse_arguments(line, args);

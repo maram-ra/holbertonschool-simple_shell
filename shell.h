@@ -26,7 +26,6 @@ char *find_command_path(char *command);
 void execute_command(char *command_path, char **args);
 void handle_command(char **args);
 char *get_env_value(const char *name);
-char *build_path(char *dir, char *cmd);
 char *_strdup(const char *str);
 int _strlen(const char *s);
 int _strncmp(const char *s1, const char *s2, size_t n);
