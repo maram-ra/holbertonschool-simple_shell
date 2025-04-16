@@ -25,6 +25,10 @@ int only_spaces(char *s);
 void parse_arguments(char *line, char **args);
 char *find_command_path(char *command);
 void execute_command(char *command_path, char **args);
-
+char *get_env_value(const char *name);
+void execute_command(char *command, char **argv);
+char *build_path(char *dir, char *cmd);
+char *_strdup(const char *str);
+int _strlen(const char *s);
 
 #endif /* SHELL_H */
