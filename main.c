@@ -10,14 +10,14 @@ void handle_command(char **args)
 	pid_t pid;
 	int status;
 
+	/* تحقق إذا الأمر ليس مسار مباشر */
 	if (args[0][0] != '/' && args[0][0] != '.')
 	{
 		path_cmd = find_command_path(args[0]);
-
 		if (!path_cmd)
 		{
-			fprintf(stderr, "%s: command not found\n", args[0]);
-			return;
+			fprintf(stderr, "%s: not found\n", args[0]);
+			exit(127);
 		}
 	}
 	else
@@ -26,24 +26,29 @@ void handle_command(char **args)
 		if (!path_cmd)
 		{
 			perror("strdup failed");
-			return;
+			exit(EXIT_FAILURE);
 		}
 	}
 
 	pid = fork();
-	if (pid == 0)
-{
-	execve(path_cmd, args, environ);
-	fprintf(stderr, "%s: not found\n", args[0]);
-	free(path_cmd);
-	exit(127);
-}
-
-
-	else if (pid > 0)
-		waitpid(pid, &status, 0);
-	else
+	if (pid == -1)
+	{
 		perror("fork failed");
+		free(path_cmd);
+		exit(EXIT_FAILURE);
+	}
+
+	if (pid == 0)
+	{
+		execve(path_cmd, args, environ);
+		fprintf(stderr, "%s: not found\n", args[0]);
+		free(path_cmd);
+		exit(127);
+	}
+	else
+	{
+		waitpid(pid, &status, 0);
+	}
 
 	free(path_cmd);
 }

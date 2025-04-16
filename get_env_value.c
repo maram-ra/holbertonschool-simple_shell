@@ -11,7 +11,7 @@ char *get_env_value(const char *name)
 	int i;
 	size_t len;
 
-	if (!environ || !name) /* ✅ إضافة مهمة */
+	if (!environ || !name)
 		return (NULL);
 
 	len = _strlen(name);
