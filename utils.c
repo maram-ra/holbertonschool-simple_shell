@@ -58,12 +58,48 @@ char *read_line(void)
 void parse_arguments(char *line, char **args)
 {
 	int i = 0;
+	char *token;
 
-	args[i] = strtok(line, " ");
-	while (args[i] != NULL && i < MAX_ARGS - 1)
+	token = tokenize_input(line);
+	while (token != NULL && i < MAX_ARGS - 1)
 	{
+		args[i] = token;
 		i++;
-		args[i] = strtok(NULL, " ");
+		token = tokenize_input(NULL);
 	}
 	args[i] = NULL;
+}
+
+/**
+ * tokenize_input - Custom tokenizer function (like strtok)
+ * @line: The line to tokenize (or NULL to continue)
+ *
+ * Return: Pointer to next token, or NULL if no more
+ */
+char *tokenize_input(char *line)
+{
+	static char *current;
+	char *start;
+
+	if (line)
+		current = line;
+
+	while (*current == ' ' || *current == '\t')
+		current++;
+
+	if (*current == '\0')
+		return (NULL);
+
+	start = current;
+
+	while (*current && *current != ' ' && *current != '\t')
+		current++;
+
+	if (*current)
+	{
+		*current = '\0';
+		current++;
+	}
+
+	return (start);
 }
