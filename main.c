@@ -1,20 +1,67 @@
 #include "shell.h"
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+
+#define MAX_ARGS 64
+
+/**
+ * handle_command - Handles execution of a command
+ * @args: Array of arguments
+ */
+void handle_command(char **args)
+{
+	char *path_cmd;
+	pid_t pid;
+	int status;
+
+	if (args[0][0] != '/' && args[0][0] != '.')
+	{
+		path_cmd = find_full_path(args[0]);
+		if (!path_cmd)
+		{
+			fprintf(stderr, "%s: command not found\n", args[0]);
+			return;
+		}
+	}
+	else
+	{
+		path_cmd = strdup(args[0]);
+		if (!path_cmd)
+		{
+			perror("strdup failed");
+			return;
+		}
+	}
+
+	pid = fork();
+	if (pid == 0)
+	{
+		execve(path_cmd, args, environ);
+		perror("execve failed");
+		free(path_cmd);
+		exit(EXIT_FAILURE);
+	}
+	else if (pid > 0)
+		waitpid(pid, &status, 0);
+	else
+		perror("fork failed");
+
+	free(path_cmd);
+}
 
 /**
  * main - Entry point for the simple shell
  *
- * Description: This function runs a basic shell loop that reads input
- * from the user, parses it into commands and arguments, finds the full
- * path to the executable, and runs it in a child process.
- *
  * Return: Always 0 on success
  */
-
 int main(void)
 {
 	char *line;
 	char *args[MAX_ARGS];
-	char *command_path;
 
 	while (1)
 	{
@@ -24,23 +71,9 @@ int main(void)
 
 		parse_arguments(line, args);
 
-		if (args[0] == NULL)
-		{
-			free(line);
-			continue;
-		}
+		if (args[0] != NULL)
+			handle_command(args);
 
-		command_path = find_command_path(args[0]);
-		if (command_path == NULL)
-		{
-			fprintf(stderr, "%s: command not found\n", args[0]);
-			free(line);
-			continue;
-		}
-
-		execute_command(command_path, args);
-
-		free(command_path);
 		free(line);
 	}
 

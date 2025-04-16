@@ -16,7 +16,6 @@
 
 /* ==== GLOBAL VARIABLES ==== */
 extern char **environ;
-
 /* ==== FUNCTION PROTOTYPES ==== */
 int main(void);
 int only_spaces(char *s);
@@ -30,5 +29,6 @@ void execute_command(char *command, char **argv);
 char *build_path(char *dir, char *cmd);
 char *_strdup(const char *str);
 int _strlen(const char *s);
-
+char *find_full_path(char *command);
+void handle_command(char **args);
 #endif /* SHELL_H */

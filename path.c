@@ -1,43 +1,48 @@
 #include "shell.h"
-#include <sys/stat.h>
 
 /**
- * find_command - Search for a command in the PATH
- * @cmd: The command to find
+ * find_full_path - Finds the full path of a command using PATH
+ * @command: The command to find (e.g., "ls")
  *
- * Return: Full path to the command, or NULL if not found
+ * Return: Full path (must be freed), or NULL if not found
  */
-char *find_command_path(char *cmd)
+char *find_full_path(char *command)
 {
-	char *path = getenv("PATH");
-	char *token, *full_path;
-	struct stat st;
+	char *path_env = getenv("PATH");
+	char *path_copy, *dir, *full_path;
+	int len;
 
-	if (!path)
+	if (!path_env)
 		return (NULL);
 
-	/* If the command contains '/', assume it's an absolute/relative path */
-	if (strchr(cmd, '/'))
-	{
-		if (stat(cmd, &st) == 0)
-			return (strdup(cmd));
+	path_copy = strdup(path_env);
+	if (!path_copy)
 		return (NULL);
-	}
 
-	token = strtok(strdup(path), ":");
-	while (token)
+	dir = strtok(path_copy, ":");
+
+	while (dir)
 	{
-		full_path = malloc(strlen(token) + strlen(cmd) + 2);
+		len = strlen(dir) + strlen(command) + 2;
+		full_path = malloc(len);
 		if (!full_path)
+		{
+			free(path_copy);
 			return (NULL);
-		sprintf(full_path, "%s/%s", token, cmd);
+		}
 
-		if (stat(full_path, &st) == 0)
-			return (full_path); /* success */
+		sprintf(full_path, "%s/%s", dir, command);
+
+		if (access(full_path, X_OK) == 0)
+		{
+			free(path_copy);
+			return (full_path);
+		}
 
 		free(full_path);
-		token = strtok(NULL, ":");
+		dir = strtok(NULL, ":");
 	}
 
+	free(path_copy);
 	return (NULL);
 }
