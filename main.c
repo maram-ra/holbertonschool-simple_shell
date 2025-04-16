@@ -85,5 +85,6 @@ int main(void)
 		free(line);
 	}
 
-	return (0);
+	return (last_status);
 }
+
