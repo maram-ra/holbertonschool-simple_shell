@@ -40,10 +40,11 @@ void handle_command(char **args)
 
 	if (pid == 0)
 	{
-		execve(path_cmd, args, environ);
-		fprintf(stderr, "%s: not found\n", args[0]);
-		free(path_cmd);
-		exit(127);
+	execve(path_cmd, args, environ);
+	fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
+	free(path_cmd);
+	exit(127);
+
 	}
 	else
 	{
