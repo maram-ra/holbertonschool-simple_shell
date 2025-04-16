@@ -1,12 +1,4 @@
 #include "shell.h"
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/wait.h>
-
-
-#define MAX_ARGS 64
 
 /**
  * handle_command - Handles execution of a command
@@ -65,6 +57,9 @@ int main(void)
 
 	while (1)
 	{
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "$ ", 2);
+
 		line = read_line();
 		if (line == NULL)
 			break;
@@ -79,3 +74,4 @@ int main(void)
 
 	return (0);
 }
+
