@@ -32,12 +32,14 @@ void handle_command(char **args)
 
 	pid = fork();
 	if (pid == 0)
-	{
-		execve(path_cmd, args, environ);
-		perror("execve failed");
-		free(path_cmd);
-		exit(EXIT_FAILURE);
-	}
+{
+	execve(path_cmd, args, environ);
+	fprintf(stderr, "%s: not found\n", args[0]);
+	free(path_cmd);
+	exit(127);
+}
+
+
 	else if (pid > 0)
 		waitpid(pid, &status, 0);
 	else

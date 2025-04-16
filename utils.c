@@ -41,7 +41,7 @@ char *read_line(void)
 	if (only_spaces(line))
 	{
 		free(line);
-		return (NULL);
+		return (_strdup(""));
 	}
 
 	return (line);
@@ -147,4 +147,29 @@ int _strncmp(const char *s1, const char *s2, size_t n)
 		return (s1[i] - s2[i]);
 
 	return (0); /* Strings are equal up to n */
+}
+/**
+ * _strdup - Duplicates a string (like the standard strdup)
+ * @str: The input string to duplicate
+ *
+ * Return: A pointer to the newly allocated copy of the string,
+ *         or NULL if memory allocation fails
+ */
+char *_strdup(const char *str)
+{
+	char *dup;
+	int len = _strlen(str);
+	int i;
+
+	/* Allocate memory for the new string (+1 for null terminator) */
+	dup = malloc(sizeof(char) * (len + 1));
+	if (!dup)
+		return (NULL);
+
+	/* Copy characters from original string */
+	for (i = 0; i < len; i++)
+		dup[i] = str[i];
+
+	dup[i] = '\0'; /* Null-terminate the new string */
+	return (dup);
 }
