@@ -65,7 +65,7 @@ void handle_command(char **args)
  */
 int main(void)
 {
-	char *line, *cmd;
+	char *line;
 	char *args[MAX_ARGS];
 
 	while (1)
@@ -77,19 +77,13 @@ int main(void)
 		if (!line)
 			break;
 
-		cmd = strtok(line, "\n");
-		while (cmd)
-		{
-			parse_arguments(cmd, args);
-			if (args[0] && args[0][0] != '\0')
-				handle_command(args);
+		parse_arguments(line, args);
 
-			cmd = strtok(NULL, "\n");
-		}
+		if (args[0] != NULL)
+			handle_command(args);
 
 		free(line);
 	}
 
-	return (last_status);
+	return (0);
 }
-
