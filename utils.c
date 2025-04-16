@@ -28,9 +28,6 @@ char *read_line(void)
 	size_t len = 0;
 	ssize_t read;
 
-	if (isatty(STDIN_FILENO))
-		write(STDOUT_FILENO, "$ ", 2);
-
 	read = getline(&line, &len, stdin);
 	if (read == -1)
 	{
@@ -107,4 +104,47 @@ char *tokenize_input(char *line)
 	}
 
 	return (start);
+}
+
+/**
+ * _strlen - Calculates the length of a string (like strlen)
+ * @s: The input string
+ *
+ * Return: Length of the string
+ */
+int _strlen(const char *s)
+{
+	int len = 0;
+
+	/* Loop until we reach the null terminator */
+	while (s[len])
+		len++;
+
+	return (len);
+}
+
+/**
+ * _strncmp - Compares two strings up to n bytes (like strncmp)
+ * @s1: First string
+ * @s2: Second string
+ * @n: Number of characters to compare
+ *
+ * Return: 0 if strings are equal up to n, otherwise difference
+ */
+int _strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t i;
+
+	/* Compare character by character until n or difference is found */
+	for (i = 0; i < n && s1[i] && s2[i]; i++)
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+	}
+
+	/* If we reached here but one string ended early */
+	if (i < n)
+		return (s1[i] - s2[i]);
+
+	return (0); /* Strings are equal up to n */
 }

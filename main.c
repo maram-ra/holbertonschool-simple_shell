@@ -12,7 +12,8 @@ void handle_command(char **args)
 
 	if (args[0][0] != '/' && args[0][0] != '.')
 	{
-		path_cmd = find_full_path(args[0]);
+		path_cmd = find_command_path(args[0]);
+
 		if (!path_cmd)
 		{
 			fprintf(stderr, "%s: command not found\n", args[0]);

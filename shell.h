@@ -30,7 +30,7 @@ char *build_path(char *dir, char *cmd);
 char *_strdup(const char *str);
 int _strlen(const char *s);
 int _strncmp(const char *s1, const char *s2, size_t n);
-char *find_full_path(char *command);
+
 char *tokenize_input(char *line);
 
 #endif /* SHELL_H */
