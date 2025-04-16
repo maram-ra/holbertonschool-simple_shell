@@ -1,4 +1,4 @@
-#include "shell.h"
+main.c #include "shell.h"
 
 /**
  * handle_command - Handles execution of a command
@@ -10,22 +10,19 @@ void handle_command(char **args)
 	pid_t pid;
 	int status;
 
+	/* مسار مباشر: / أو . */
 	if (args[0][0] == '/' || args[0][0] == '.')
-{
-	path_cmd = strdup(args[0]);
-}
-else
-{
-	path_cmd = find_command_path(args[0]);
-}
-
-if (!path_cmd || access(path_cmd, X_OK) != 0)
-{
-	fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
-	free(path_cmd);
-	return;
-}
-
+	{
+		if (access(args[0], X_OK) == 0)
+		{
+			path_cmd = strdup(args[0]);
+		}
+		else
+		{
+			fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
+			exit(127);
+		}
+	}
 	else
 	{
 		path_cmd = find_command_path(args[0]);
@@ -88,4 +85,3 @@ int main(void)
 
 	return (0);
 }
-
