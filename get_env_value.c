@@ -9,7 +9,12 @@
 char *get_env_value(const char *name)
 {
 	int i;
-	size_t len = _strlen(name);
+	size_t len;
+
+	if (!environ || !name) /* ✅ إضافة مهمة */
+		return (NULL);
+
+	len = _strlen(name);
 
 	for (i = 0; environ[i]; i++)
 	{
@@ -18,3 +23,4 @@ char *get_env_value(const char *name)
 	}
 	return (NULL);
 }
+
