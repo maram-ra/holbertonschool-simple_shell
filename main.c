@@ -65,26 +65,31 @@ void handle_command(char **args)
  */
 int main(void)
 {
-	char *line;
+	char *line = NULL;
+	size_t len = 0;
 	char *args[MAX_ARGS];
+	ssize_t read;
 
-	while (1)
+	if (isatty(STDIN_FILENO))
+		write(STDOUT_FILENO, "$ ", 2);
+
+	while ((read = getline(&line, &len, stdin)) != -1)
 	{
+		if (line[read - 1] == '\n')
+			line[read - 1] = '\0';
+
+		if (!only_spaces(line))
+		{
+			parse_arguments(line, args);
+			if (args[0] != NULL)
+				handle_command(args);
+		}
+
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "$ ", 2);
-
-		line = read_line();
-		if (!line)
-			break;
-
-		parse_arguments(line, args);
-
-		if (args[0] != NULL)
-			handle_command(args);
-
-		free(line);
 	}
 
+	free(line);
 	return (last_status);
 }
 
