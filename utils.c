@@ -60,6 +60,10 @@ void parse_arguments(char *line, char **args)
 	int i = 0;
 	char *token;
 
+	/* تخلص من المسافات في البداية */
+	while (*line == ' ' || *line == '\t')
+		line++;
+
 	token = tokenize_input(line);
 	while (token != NULL && i < MAX_ARGS - 1)
 	{
@@ -69,6 +73,7 @@ void parse_arguments(char *line, char **args)
 	}
 	args[i] = NULL;
 }
+
 
 /**
  * tokenize_input - Custom tokenizer function (like strtok)
