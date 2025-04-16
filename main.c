@@ -16,7 +16,7 @@ void handle_command(char **args)
 		path_cmd = find_command_path(args[0]);
 		if (!path_cmd)
 		{
-			fprintf(stderr, "%s: not found\n", args[0]);
+			fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
 			exit(127);
 		}
 	}
