@@ -2,68 +2,42 @@
 #include <sys/stat.h>
 
 /**
- * build_path - Build full path from directory and command
- * @dir: directory path
- * @cmd: command name
+ * find_command - Search for a command in the PATH
+ * @cmd: The command to find
  *
- * Return: full path string or NULL on failure
- */
-char *build_path(char *dir, char *cmd)
-{
-	char *full_path;
-	int len = _strlen(dir) + _strlen(cmd) + 2;
-
-	full_path = malloc(len);
-	if (!full_path)
-		return (NULL);
-
-	sprintf(full_path, "%s/%s", dir, cmd);
-	return (full_path);
-}
-
-/**
- * find_command_path - Search for a command in the PATH
- * @cmd: command to find
- *
- * Return: full path or NULL
+ * Return: Full path to the command, or NULL if not found
  */
 char *find_command_path(char *cmd)
 {
+	char *path = getenv("PATH");
+	char *token, *full_path;
 	struct stat st;
-	char *path = get_env_value("PATH");
-	char *token, *dup, *full_path;
 
 	if (!path)
 		return (NULL);
 
+	/* If the command contains '/', assume it's an absolute/relative path */
 	if (strchr(cmd, '/'))
 	{
 		if (stat(cmd, &st) == 0)
-			return (_strdup(cmd));
+			return (strdup(cmd));
 		return (NULL);
 	}
 
-	dup = _strdup(path);
-	token = strtok(dup, ":");
-
+	token = strtok(strdup(path), ":");
 	while (token)
 	{
-		full_path = build_path(token, cmd);
+		full_path = malloc(strlen(token) + strlen(cmd) + 2);
 		if (!full_path)
-		{
-			free(dup);
 			return (NULL);
-		}
+		sprintf(full_path, "%s/%s", token, cmd);
 
 		if (stat(full_path, &st) == 0)
-		{
-			free(dup);
-			return (full_path);
-		}
+			return (full_path); /* success */
 
 		free(full_path);
 		token = strtok(NULL, ":");
 	}
-	free(dup);
+
 	return (NULL);
 }
