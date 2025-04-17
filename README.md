@@ -1,5 +1,7 @@
 <div align="center">
 
+ <img src="https://github.com/user-attachments/assets/5f8d33ce-fed8-438a-935c-a9916afef26e" width="400">
+ 
 # 🐚 Holberton Simple Shell
 
 
@@ -67,58 +69,73 @@ gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 
 ## 📚 Tasks Breakdown
 #### ✅ 0. README, man, AUTHORS
-You are reading it now ✨
+- You are reading it now ✨
 
-Also created man_1_simple_shell and AUTHORS file
+- Created `man_1_simple_shell` and `AUTHORS` file
+- See the manual:
+
+```bash
+man ./hsh.1
+
+```
 
 #### ✅ 1. Betty would be proud
-All code follows Holberton’s Betty style:
+- All code follows Holberton’s Betty style:
 
-Max 5 functions per file
+- Max 5 functions per file
 
-Max 40 lines per function (unless justified)
+- Max 40 lines per function (unless justified)
 
-No global variables
+- No global variables
 
-Proper header comments
+- Proper header comments
 
 #### ✅ 2. Simple shell 0.1
-Reads user input from stdin
+- Reads user input from `stdin`
 
-Parses input into tokens
+- Parses input into tokens
 
-Executes commands using execve
+- Executes commands using `execve`
 
-Forks a new process for each command
+- Forks a new process for each command
 
 #### ✅ 3. Simple shell 0.2
-Handles command not found errors
+- Handles command not found errors
 
-Exits gracefully with correct status code
+- Exits gracefully with correct status code
 
-Prompts $ in interactive mode
+- Prompts `$` in interactive mode
 
 #### ✅ 4. Simple shell 0.3
-Handles PATH search:
+- Handles PATH search:
 
-Splits PATH variable into directories
+- Splits `PATH` variable into directories
 
-Appends command to each directory
+- Appends command to each directory
 
-Checks if file exists and is executable
+- Checks if file exists and is executable
 
 #### ✅ 5. Simple shell 0.4
-Implements exit built-in
+- Implements `exit` built-in
 
-Ends shell with optional status code
+- Ends shell with optional status code
 
-Implements env built-in
+- Implements `env` built-in
 
-Prints current environment variables
+- Prints current environment variables
 
 #### ✅ 6. Simple shell 1.0
-Shell supports all of the above in both interactive and non-interactive modes:
+- Shell supports all of the above in both interactive and non-interactive modes:
 
 ```bash
 echo "ls -l" | ./hsh
+```
+
+## 🔧 Usage
+```bash
+$ ./hsh
+$ ls
+$ pwd
+$ env
+$ exit
 ```
