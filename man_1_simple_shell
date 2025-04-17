@@ -1,32 +1,84 @@
-.TH hsh 1 "April 2025" "1.0" "Simple Shell Manual"
+.TH HSH 1 "April 2025" "0.1" "Holberton Simple Shell Manual"
+
 .SH NAME
 hsh \- simple UNIX command line interpreter
+
 .SH SYNOPSIS
 .B hsh
+[\fIcommand\fR]
+
 .SH DESCRIPTION
-hsh is a basic UNIX shell that supports command execution with arguments,
-environment variable usage (PATH), and built-in commands.
+.B hsh
+is a simple shell created as a project for Holberton School. It is a basic implementation of a command-line interpreter that reads lines from either the standard input or a file, parses them, and executes commands.
+
+The shell handles basic command execution with arguments, environment variables, and built-in commands like
+.B exit
+and
+.B env.
+
+.SH FEATURES
+.TP
+• Display a prompt and wait for the user to type a command.
+.TP
+• Execute commands with their full path or search in the PATH variable.
+.TP
+• Handle commands with arguments.
+.TP
+• Exit the shell with
+.B exit
+or Ctrl+D (EOF).
+.TP
+• Display environment variables with
+.B env.
+
+.SH BUILTINS
+.TP
+.B exit [status]
+Exit the shell with a given status code.
+
+.TP
+.B env
+Print the current environment variables.
 
 .SH USAGE
 .TP
-Start the shell:
-.B ./hsh
+To start the shell, simply run:
+.B
+./hsh
+
+Then enter a command like:
+.B
+ls -l /tmp
+
+You can also pipe or redirect commands:
+.B
+echo "ls" | ./hsh
+
+.SH EXAMPLES
+.TP
+$ ./hsh
+.br
+$ ls
+.br
+$ pwd
+.br
+$ env
+.br
+$ exit
+
+.SH FILES
+.TP
+.I shell.h
+Header file containing function prototypes and macros.
 
 .TP
-Type a command and press Enter:
-.B /bin/ls
-
-.TP
-Exit the shell:
-.B exit
-
-.TP
-Print environment variables:
-.B env
+.I main.c
+Main source file that contains the shell loop.
 
 .SH AUTHORS
 Maram Alsofyani and Hessah Alotaysh
 
 .SH SEE ALSO
-.BR sh (1),
-.BR bash (1)
+.BR sh(1),
+.BR bash(1),
+.BR execve(2)
