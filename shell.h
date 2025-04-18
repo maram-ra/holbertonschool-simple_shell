@@ -29,6 +29,8 @@ char *get_env_value(const char *name);
 char *_strdup(const char *str);
 int _strlen(const char *s);
 int _strncmp(const char *s1, const char *s2, size_t n);
+int check_builtin(char **args);
+void free_args_and_exit(void);
 
 char *tokenize_input(char *line);
 

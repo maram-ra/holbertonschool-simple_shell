@@ -79,11 +79,18 @@ int main(void)
 			line[read - 1] = '\0';
 
 		if (!only_spaces(line))
-		{
-			parse_arguments(line, args);
-			if (args[0] != NULL)
-				handle_command(args);
-		}
+{
+	parse_arguments(line, args);
+	if (args[0] != NULL)
+	{
+		if (check_builtin(args))  /* تعامل مع exit هنا */
+			continue;
+
+		handle_command(args);    /* باقي الأوامر */
+	}
+}
+
+
 
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "$ ", 2);
