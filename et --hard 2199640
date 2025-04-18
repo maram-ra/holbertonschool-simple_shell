@@ -1,0 +1,106 @@
+[33m7a32490[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix env built-in with minimal environment (Task 0.5)
+[33m9ae3870[m Implement exit built-in command
+[33m2199640[m Add
+[33mcc421de[m Implement exit built-in
+[33m005f291[m Update README.md
+[33mfb24de6[m Update README.md
+[33me0770c9[m Update AUTHORS
+[33ma1a409f[m Update man_1_simple_shell
+[33m3984ba8[m Fix: support multi-line commands via stdin
+[33m20a9c43[m Add global variable last_status for tracking command exit status
+[33m9505551[m Fix: handle multiple newline-separated commands in main loop
+[33mdbc559d[m Fix: handle multiple newline-separated commands in main loop
+[33m6815bce[m Add global variable last_status for tracking command exit status
+[33m6a4f250[m  improved env handling, command resolution, and parsing
+[33ma4fda3f[m Fix: properly handle relative path errors and prevent fork on invalid command
+[33m134e595[m Fix: print error and exit 127 only from child process
+[33mdf35c80[m Fix: print error and exit 127 only from child process
+[33m2a36ec0[m Fix: format stderr for relative paths and skip fork if not found
+[33mc99e9b3[m Fix: match stderr format for relative path command not found
+[33m46da44a[m Fix: stderr format and exit code for command not found in relative path
+[33ma3c4228[m Fix: handle missing PATH, empty PATH, and invalid commands without fork
+[33m48a7ed3[m Fix: handle empty environ in get_env_value
+[33mc618997[m Add _strdup to handle empty line input in read_line
+[33m8dca9ce[m Fix: replace find_full_path with find_command_path in handle_command
+[33mdd009a1[m ✅ Complete Task 4: Replace strtok and getenv, handle spaces, PATH, and arguments
+[33mb3c4e04[m Replace strtok with custom tokenize_input function
+[33m19512c9[m Remove getenv, strlen, and strncmp; use custom environment and string functions
+[33m7e81ebe[m Implement PATH support, execve with arguments, and prevent fork on invalid commands
+[33m63ba111[m Fixing the code and adding funcations
+[33m72f94ad[m fixing the code
+[33m2071f7a[m fixing the code
+[33m7c11c53[m initial commit with basic shell structure
+[33ma5bad85[m Create utility function to handle empty input
+[33m4fb9d8e[m declare function prototypes and global variables
+[33m30f1a43[m Create execute_command to run external programs
+[33mad87eae[m Add find_command_path to locate command in system paths
+[33m269ab50[m implement main shell loop and user input handling
+[33ma069261[m update main.c to handle command resolution with PATH
+[33medf8c0a[m Add path.c with function to resolve command using PATH
+[33m67082a2[m declare find_command function
+[33me67aa44[m Delete Screenshot 2025-04-13 191554.png
+[33m504efd7[m Update README.md
+[33mb3134f5[m Update README.md
+[33m92dce35[m Update README.md
+[33m652e770[m Update README.md
+[33m3243ee2[m Update README.md
+[33m1e58b22[m Update README.md
+[33m554372c[m Update README.md
+[33m7650e04[m Update README.md
+[33maaa84eb[m Add files via upload
+[33m75b16a8[m Delete Screenshot 2025-02-05 191013.png
+[33m3d8076c[m Add files via upload
+[33mc228df0[m Update README.md
+[33md548c71[m Delete 232889814-c96b5a35-7032-4b5c-8e06-4263eb0f5c2f.png
+[33meade8de[m Update README.md
+[33m201822f[m Update README.md
+[33m8354f01[m Add
+[33mfecb779[m Add
+[33m0b0af96[m Add
+[33m50681b7[m Delete exe_command.c
+[33m51237a5[m Delete builtins.c
+[33meb653c2[m Add
+[33maa22c2a[m Add
+[33m9f3e4db[m Add
+[33m05f25a7[m Add
+[33m8807723[m Add main.c
+[33m5b458c0[m Add header file shell.h with function prototypes
+[33mca44eed[m Update README.md
+[33m054df08[m Delete 91be7408-a469-435f-8c7d-c69c2401977a.png
+[33md7d3b0b[m Update README.md
+[33m4802410[m Update README.md
+[33mddaaebd[m Update README.md
+[33m4559160[m Update README.md
+[33m2b3cc37[m Update README.md
+[33m95ffefb[m Update README.md
+[33m379f626[m Update README.md
+[33mcd5e12f[m Update README.md
+[33mbd2ef98[m Update README.md
+[33m56102b0[m Update README.md
+[33me5ff409[m Update README.md
+[33m2528f9d[m Update README.md
+[33mc4b0112[m Update README.md
+[33mb06947f[m Update README.md
+[33me9def2c[m Update README.md
+[33mbf19edf[m Update README.md
+[33mc14aa0b[m Update README.md
+[33m349955d[m Update README.md
+[33m43263e4[m Update README.md
+[33md396303[m Update README.md
+[33m5a90cd9[m Update README.md
+[33m9a58328[m Update README.md
+[33m7e507b9[m Update README.md
+[33mb3627e8[m Add files via upload
+[33m4608a3a[m Update README.md
+[33mb893daa[m Update README.md
+[33m0c30385[m Add files via upload
+[33md99f2b0[m Update README.md
+[33m14fb44f[m Update README.md
+[33maaf28f3[m Update README.md
+[33m7729f26[m Create man_1_simple_shell
+[33m0360991[m Create AUTHORS
+[33m0cb5004[m Update README.md
+[33m64d9367[m Update README.md
+[33mabc8b67[m Update README.md
+[33m579e847[m Update README.md
+[33m3577f45[m Initial commit
