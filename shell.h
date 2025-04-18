@@ -20,7 +20,7 @@ extern int last_status;
 extern char *line;
 
 /* ==== FUNCTION PROTOTYPES ==== */
-int main(void);
+int main(int argc, char **argv, char **env);
 int only_spaces(char *s);
 char *read_line(void);
 void parse_arguments(char *line, char **args);
@@ -33,7 +33,7 @@ int _strlen(const char *s);
 int _strncmp(const char *s1, const char *s2, size_t n);
 int check_builtin(char **args);
 void free_args_and_exit(void);
-
+void print_env(void);
 char *tokenize_input(char *line);
 
 #endif /* SHELL_H */
