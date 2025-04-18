@@ -85,10 +85,10 @@ int main(int argc, char **argv, char **env)
 	parse_arguments(line, args);
 	if (args[0] != NULL)
 	{
-		if (check_builtin(args))  /* تعامل مع exit هنا */
+		if (check_builtin(args))
 			continue;
 
-		handle_command(args);    /* باقي الأوامر */
+		handle_command(args);
 	}
 }
 
