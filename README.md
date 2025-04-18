@@ -32,12 +32,6 @@ This simple shell was created by Maram and Hessah as a project for Holberton Sch
 
 ---
 
-## Shell Flowchart
-
-
-
----
-
 ## 🛠️ How to Compile
 
 ```bash
