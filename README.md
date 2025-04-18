@@ -16,19 +16,23 @@ This simple shell was created by Maram and Hessah as a project for Holberton Sch
 ---
 
 
-## 🧠 What It Does
+## Features
 
-Displays a prompt and waits for user input  
-Executes commands like `/bin/ls`, `pwd`, `echo Hello`  
-Handles commands with arguments like `ls -l` or `echo text`  
-Uses the `PATH` environment variable to find executables (`ls`, `env`)  
-Supports built-in commands: `exit`, `env`  
-Works in both **interactive** and **non-interactive** modes
+- Display a prompt and wait for the user to type a command
+- Handle simple commands with arguments (e.g. `ls -l /tmp`)
+- Execute commands using `execve`
+- Handle the `PATH` environment variable to locate commands
+- Support relative and absolute paths (e.g. `/bin/ls`, `./my_script`)
+- Built-in commands:
+  - `exit`: exits the shell
+  - `env`: prints the current environment variables
+- Ignore empty or whitespace-only inputs
+- Handle command not found errors with proper exit status `127`
 
 
 ---
 
-## 🖼️ Shell Flowchart
+## Shell Flowchart
 
 
 
@@ -68,7 +72,7 @@ gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 
 
 ## 📚 Tasks Breakdown
-#### ✅ 0. README, man, AUTHORS
+####  0. README, man, AUTHORS
 - You are reading it now ✨
 
 - Created `man_1_simple_shell` and `AUTHORS` file
@@ -79,7 +83,7 @@ man ./hsh.1
 
 ```
 
-#### ✅ 1. Betty would be proud
+#### 1. Betty would be proud
 - All code follows Holberton’s Betty style:
 
 - Max 5 functions per file
@@ -90,7 +94,7 @@ man ./hsh.1
 
 - Proper header comments
 
-#### ✅ 2. Simple shell 0.1
+#### 2. Simple shell 0.1
 - Reads user input from `stdin`
 
 - Parses input into tokens
@@ -99,14 +103,14 @@ man ./hsh.1
 
 - Forks a new process for each command
 
-#### ✅ 3. Simple shell 0.2
+#### 3. Simple shell 0.2
 - Handles command not found errors
 
 - Exits gracefully with correct status code
 
 - Prompts `$` in interactive mode
 
-#### ✅ 4. Simple shell 0.3
+#### 4. Simple shell 0.3
 - Handles PATH search:
 
 - Splits `PATH` variable into directories
@@ -115,7 +119,7 @@ man ./hsh.1
 
 - Checks if file exists and is executable
 
-#### ✅ 5. Simple shell 0.4
+#### 5. Simple shell 0.4
 - Implements `exit` built-in
 
 - Ends shell with optional status code
@@ -124,7 +128,7 @@ man ./hsh.1
 
 - Prints current environment variables
 
-#### ✅ 6. Simple shell 1.0
+#### 6. Simple shell 1.0
 - Shell supports all of the above in both interactive and non-interactive modes:
 
 ```bash
