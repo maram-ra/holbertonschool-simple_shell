@@ -6,7 +6,6 @@
 
 
   <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExenJlN24wYTVxMHM3ZnVyem9zeGJoOW1xcW8zMGxpeGpscWZybjJmNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13HgwGsXF0aiGY/giphy.gif" width="400">
-</div>
 
 ## Description
 
@@ -143,3 +142,5 @@ $ pwd
 $ env
 $ exit
 ```
+</div>
+
