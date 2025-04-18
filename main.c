@@ -65,7 +65,7 @@ void handle_command(char **args)
  */
 int main(void)
 {
-	char *line = NULL;
+
 	size_t len = 0;
 	char *args[MAX_ARGS];
 	ssize_t read;

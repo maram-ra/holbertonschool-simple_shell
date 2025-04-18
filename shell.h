@@ -17,6 +17,8 @@
 /* ==== GLOBAL VARIABLES ==== */
 extern char **environ;
 extern int last_status;
+extern char *line;
+
 /* ==== FUNCTION PROTOTYPES ==== */
 int main(void);
 int only_spaces(char *s);

@@ -20,6 +20,9 @@ int check_builtin(char **args)
  */
 void free_args_and_exit(void)
 {
-	/* Add any other cleanup logic if needed */
+	if (line)
+		free(line);
 	exit(last_status);
+
 }
+
