@@ -2,7 +2,7 @@
 
 /**
  * handle_command - Handles execution of a command
- * @args: Array of arguments
+ * @args: Array of argumentss
  */
 void handle_command(char **args)
 {
