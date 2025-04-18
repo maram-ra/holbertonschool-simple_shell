@@ -44,7 +44,7 @@ This simple shell was created by Maram and Hessah as a project for Holberton Sch
 gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 ```
 ----
-## 🗂️ Project Structure
+##  Project Structure
 
 | **File**         | **Description**                                      |
 |------------------|------------------------------------------------------|
