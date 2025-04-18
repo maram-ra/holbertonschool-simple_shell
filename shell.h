@@ -20,7 +20,7 @@ extern int last_status;
 extern char *line;
 
 /* ==== FUNCTION PROTOTYPES ==== */
-int main(int argc, char **argv, char **env);
+int main(void);
 int only_spaces(char *s);
 char *read_line(void);
 void parse_arguments(char *line, char **args);

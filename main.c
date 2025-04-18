@@ -62,12 +62,8 @@ void handle_command(char **args)
  *
  * Return: Always 0
  */
-int main(int argc, char **argv, char **env)
+int main(void)
 {
-	(void)argc;
-	(void)argv;
-	environ = env;
-
 	size_t len = 0;
 	char *args[MAX_ARGS];
 	ssize_t read;

@@ -2,4 +2,3 @@
 
 int last_status = 0;
 char *line = NULL;
-char **environ; 
