@@ -10,7 +10,11 @@
 
 ## Description
 
-This simple shell was created by Maram and Hessah as a project for Holberton School of Computer Science. It is a simple UNIX command interpreter written in the C programming language. The program uses bash commands it retrieves from the command line interface (CLI) that are inputed by the user. The shell can be run in interactive and non interactive mode as shown below.
+This shell was created by Maram and Hessah as a project at Holberton School.  
+It is a simple UNIX command-line interpreter written in C.  
+
+The shell accepts commands from the user via the command line interface (CLI),  
+supports both interactive and non-interactive modes, and executes standard system commands.
 
 
 ---
@@ -40,14 +44,16 @@ gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 ----
 ##  Project Structure
 
-| **File**         | **Description**                                      |
-|------------------|------------------------------------------------------|
-| `main.c`         | Entry point, runs the shell loop and handles input   |
-| `shell.h`        | Header file with all function prototypes and macros  |
-| `utils.c`        | Helper functions for string manipulation and checking|
-| `parser.c`       | Functions to parse and tokenize user input           |
-| `path.c`         | Finds command paths by searching the `PATH` variable|
-| `builtins.c`     | Built-in command implementations (`exit`, `env`)     |
+| File              | Description                                          |
+|-------------------|------------------------------------------------------|
+| `main.c`          | Entry point, runs the shell loop                    |
+| `shell.h`         | Header file with all function prototypes and macros |
+| `utils.c`         | Helper functions (e.g., string length, duplicates)  |
+| `builtins.c`      | Built-in command implementations (`exit`, `env`)    |
+| `get_env_value.c` | Retrieves values from the environment               |
+| `find_command_path.c` | Finds executable using `PATH`                  |
+| `execute.c`       | Executes external programs                          |
+| `globals.c`       | Global variables (e.g., `line`, `last_status`)      |
 
 ## 🔧 Function Prototypes & Descriptions
 | **Prototype**                                      | **Description**                                           |
@@ -65,7 +71,7 @@ gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 | `void print_env(void);`                            | Prints current environment variables                      |
 
 
-## 📚 Tasks Breakdown
+## Tasks Breakdown
 ####  0. README, man, AUTHORS
 - You are reading it now ✨
 
