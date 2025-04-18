@@ -1,6 +1,5 @@
 #include "shell.h"
 
-int last_status = 0;
 /**
  * handle_command - Handles execution of a command
  * @args: Array of arguments
