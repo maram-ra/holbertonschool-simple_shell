@@ -4,7 +4,7 @@
  * check_builtin - Checks if the command is a built-in and executes it
  * @args: Parsed arguments from user input
  *
- * Return: 1 if a built-in was handled, 0 otherwise
+ * Return: 0
  */
 
 int check_builtin(char **args)
