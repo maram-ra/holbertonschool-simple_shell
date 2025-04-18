@@ -36,5 +36,4 @@ void free_args_and_exit(void);
 void print_env(void);
 char *tokenize_input(char *line);
 
-#endif /* SHELL_H */
-
+#endif 
