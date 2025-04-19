@@ -6,22 +6,21 @@
  *
  * Return: 0
  */
-
 int check_builtin(char **args)
 {
-    if (_strncmp(args[0], "exit", 4) == 0 && args[1] == NULL)
-    {
-        free_args_and_exit();
-        return (1);
-    }
+	if (_strncmp(args[0], "exit", 4) == 0 && args[1] == NULL)
+	{
+		free_args_and_exit();
+		return (1);
+	}
 
-    if (_strncmp(args[0], "env", 3) == 0 && args[1] == NULL)
-    {
-        print_env();
-        return (1);
-    }
+	if (_strncmp(args[0], "env", 3) == 0 && args[1] == NULL)
+	{
+		print_env();
+		return (1);
+	}
 
-    return (0);
+	return (0);
 }
 
 /**
@@ -32,7 +31,6 @@ void free_args_and_exit(void)
 	if (line)
 		free(line);
 	exit(last_status);
-
 }
 
 /**
@@ -40,13 +38,12 @@ void free_args_and_exit(void)
  */
 void print_env(void)
 {
-    int i = 0;
+	int i = 0;
 
-    while (environ[i])
-    {
-        write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
-        write(STDOUT_FILENO, "\n", 1);
-        i++;
-    }
+	while (environ[i])
+	{
+		write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
+		write(STDOUT_FILENO, "\n", 1);
+		i++;
+	}
 }
-
