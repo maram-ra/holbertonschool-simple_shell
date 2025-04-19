@@ -40,8 +40,8 @@ char *read_line(void)
 
 	if (only_spaces(line))
 	{
-	free(line);
-	return (NULL);
+		free(line);
+		return (NULL);
 	}
 
 	return (line);
@@ -57,7 +57,6 @@ void parse_arguments(char *line, char **args)
 	int i = 0;
 	char *token;
 
-	/* تخلص من المسافات في البداية */
 	while (*line == ' ' || *line == '\t')
 		line++;
 
@@ -71,41 +70,6 @@ void parse_arguments(char *line, char **args)
 	args[i] = NULL;
 }
 
-
-/**
- * tokenize_input - Custom tokenizer function (like strtok)
- * @line: The line to tokenize (or NULL to continue)
- *
- * Return: Pointer to next token, or NULL if no more
- */
-char *tokenize_input(char *line)
-{
-	static char *current;
-	char *start;
-
-	if (line)
-		current = line;
-
-	while (*current == ' ' || *current == '\t')
-		current++;
-
-	if (*current == '\0')
-		return (NULL);
-
-	start = current;
-
-	while (*current && *current != ' ' && *current != '\t')
-		current++;
-
-	if (*current)
-	{
-		*current = '\0';
-		current++;
-	}
-
-	return (start);
-}
-
 /**
  * _strlen - Calculates the length of a string (like strlen)
  * @s: The input string
@@ -116,7 +80,6 @@ int _strlen(const char *s)
 {
 	int len = 0;
 
-	/* Loop until we reach the null terminator */
 	while (s[len])
 		len++;
 
@@ -135,41 +98,14 @@ int _strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t i;
 
-	/* Compare character by character until n or difference is found */
 	for (i = 0; i < n && s1[i] && s2[i]; i++)
 	{
 		if (s1[i] != s2[i])
 			return (s1[i] - s2[i]);
 	}
 
-	/* If we reached here but one string ended early */
 	if (i < n)
 		return (s1[i] - s2[i]);
 
-	return (0); /* Strings are equal up to n */
-}
-/**
- * _strdup - Duplicates a string (like the standard strdup)
- * @str: The input string to duplicate
- *
- * Return: A pointer to the newly allocated copy of the string,
- *         or NULL if memory allocation fails
- */
-char *_strdup(const char *str)
-{
-	char *dup;
-	int len = _strlen(str);
-	int i;
-
-	/* Allocate memory for the new string (+1 for null terminator) */
-	dup = malloc(sizeof(char) * (len + 1));
-	if (!dup)
-		return (NULL);
-
-	/* Copy characters from original string */
-	for (i = 0; i < len; i++)
-		dup[i] = str[i];
-
-	dup[i] = '\0'; /* Null-terminate the new string */
-	return (dup);
+	return (0);
 }
