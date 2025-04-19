@@ -1,8 +1,5 @@
-#include "shell.h"
-#include <unistd.h>
-
 /**
- * handle_command - Handles execution of command
+ * handle_command - Executes the command if found
  * @args: Argument vector
  */
 void handle_command(char **args)
@@ -23,6 +20,6 @@ void handle_command(char **args)
 		write(STDERR_FILENO, "./hsh: 1: ", 10);
 		write(STDERR_FILENO, args[0], _strlen(args[0]));
 		write(STDERR_FILENO, ": not found\n", 13);
-		last_status = 127;
+		last_status = 127; /* Update status to indicate error */
 	}
 }
