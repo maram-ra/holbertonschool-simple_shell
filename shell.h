@@ -44,6 +44,7 @@ char *tokenize_input(char *line);
 int _strlen(const char *s);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strdup(const char *str);
+char *get_env_value(const char *name);
 
 /* command execution */
 char *find_command_path(char *command);
