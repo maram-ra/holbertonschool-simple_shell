@@ -1,9 +1,9 @@
 #include "shell.h"
 
 /**
- * execute_command - Fork and run a command
- * @path: full path to the command
- * @args: array of arguments
+ * execute_command - Execute a command with fork and execve
+ * @path: Full path to command
+ * @args: Command arguments
  */
 void execute_command(char *path, char **args)
 {
@@ -21,8 +21,8 @@ void execute_command(char *path, char **args)
 	{
 		if (execve(path, args, environ) == -1)
 		{
-			perror("execve");
-			exit(EXIT_FAILURE);
+			fprintf(stderr, "./hsh: 1: %s: not found\n", args[0]);
+			exit(127);
 		}
 	}
 	else
