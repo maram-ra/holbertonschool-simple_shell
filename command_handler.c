@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <unistd.h>
 
 /**
  * handle_command - Handles execution of command
@@ -8,18 +9,20 @@ void handle_command(char **args)
 {
 	char *command_path;
 
-	if (!args || !args[0])  /* If no command, do nothing */
+	if (!args || !args[0])
 		return;
 
-	command_path = find_command_path(args[0]);  /* Find the command path */
-	if (command_path)  /* If found */
+	command_path = find_command_path(args[0]);
+	if (command_path)
 	{
-		execute_command(command_path, args);  /* Execute the command */
-		free(command_path);  /* Free the command path after execution */
+		execute_command(command_path, args);
+		free(command_path);
 	}
-	else  /* Command not found */
+	else
 	{
-		dprintf(STDERR_FILENO, "./hsh: 1: %s: not found\n", args[0]);
-		last_status = 127;  /* Set the last status to indicate failure */
+		write(STDERR_FILENO, "./hsh: 1: ", 10);
+		write(STDERR_FILENO, args[0], _strlen(args[0]));
+		write(STDERR_FILENO, ": not found\n", 13);
+		last_status = 127;
 	}
 }
