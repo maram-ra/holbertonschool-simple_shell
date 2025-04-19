@@ -19,8 +19,7 @@ void handle_command(char **args)
 	}
 	else  /* Command not found */
 	{
-		write(STDERR_FILENO, args[0], _strlen(args[0]));  /* Print command name */
-		write(STDERR_FILENO, ": command not found\n", 20);  /* Print error message */
+		dprintf(STDERR_FILENO, "./hsh: 1: %s: not found\n", args[0]);
 		last_status = 127;  /* Set the last status to indicate failure */
 	}
 }
