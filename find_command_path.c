@@ -11,35 +11,36 @@ char *find_command_path(char *command)
 	char full_path[1024];
 	struct stat st;
 
-	/* إذا الأمر فيه /، نرجعه مباشرة (يعني مسار نسبي أو مطلق) */
+	/* If the command contains '/', return directly relative or absolute path */
 	if (strchr(command, '/'))
 	{
 		if (stat(command, &st) == 0 && (st.st_mode & S_IXUSR))
-			return strdup(command);
-		return NULL;
+			return (strdup(command));
+		return (NULL);
 	}
 
-	/* إذا ما فيه PATH أو فاضي، ما نقدر نكمل */
+	/* If PATH is missing or empty, we can't proceed */
 	path_env = get_env_value("PATH");
 	if (!path_env || *path_env == '\0')
-		return NULL;
+		return (NULL);
 
 	path_copy = strdup(path_env);
 	if (!path_copy)
-		return NULL;
+		return (NULL);
 
 	dir = strtok(path_copy, ":");
 	while (dir)
 	{
-		snprintf(full_path, sizeof(full_path), "%s/%s", dir, command);
+		snprintf(full_path, sizeof(full_path),
+			"%s/%s", dir, command);
 		if (stat(full_path, &st) == 0 && (st.st_mode & S_IXUSR))
 		{
 			free(path_copy);
-			return strdup(full_path);
+			return (strdup(full_path));
 		}
 		dir = strtok(NULL, ":");
 	}
 
 	free(path_copy);
-	return NULL;
+	return (NULL);
 }
