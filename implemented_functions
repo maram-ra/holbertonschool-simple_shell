@@ -1,0 +1,44 @@
+            return 
+            return 
+        free
+        if 
+        if 
+        return 
+        return 
+        return 
+        return 
+        return 
+        token = tokenize_input
+    dup = malloc
+    for 
+    for 
+    if 
+    if 
+    if 
+    if 
+    if 
+    if 
+    if 
+    if 
+    len = _strlen
+    read = getline
+    return 
+    return 
+    return 
+    return 
+    return 
+    return 
+    token = tokenize_input
+    while 
+    while 
+    while 
+    while 
+    while 
+    while 
+char *_strdup
+char *read_line
+char *tokenize_input
+int _strlen
+int _strncmp
+int only_spaces
+void parse_arguments
