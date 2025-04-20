@@ -1,60 +1,131 @@
 #include "shell.h"
 
+char **env;
+char *command;
+
 /**
- * display_prompt - Displays the shell prompt if in interactive mode
+ * print_env - prints the environment
+ * Return: 0 on success, -1 on error
  */
-void display_prompt(void)
+int print_env(void)
 {
-	if (isatty(STDIN_FILENO))
-		write(STDOUT_FILENO, "$ ", 2);
+	int i = 0;
+
+	if (env == NULL)
+		return (-1);
+	while (env[i])
+	{
+		printf("%s\n", env[i++]);
+	}
+	return (0);
 }
 
 /**
- * process_input - Reads, parses, and handles input
- * @args: Array to hold parsed arguments
- * @len: Pointer to buffer length
- *
- * Return: 1 to continue loop, 0 to break
+ * parse - tokenizes the command
+ * @command: command from user
+ * @envp: environment variables
  */
-int process_input(char **args, size_t *len)
+void parse(char command[], char **envp)
 {
-	ssize_t read = getline(&line, len, stdin);
+	char *arguments[11];
+	char *token = strtok(command, " ");
+	int arg_count = 0;
 
-	if (read == -1)
-		return (0);
-
-	if (line[read - 1] == '\n')
-		line[read - 1] = '\0';
-
-	if (!only_spaces(line))
+	while (token != NULL && arg_count < 10)
 	{
-		parse_arguments(line, args);
-		if (args[0] != NULL)
+		arguments[arg_count++] = token;
+		token = strtok(NULL, " ");
+	}
+	if (arg_count > 10)
+	{
+		perror("Error: Too many arguments");
+		return;
+	}
+	arguments[arg_count] = NULL;
+	if (arg_count > 0)
+	{
+		if (envp != NULL)
+			execute(arguments, envp);
+		else
 		{
-			if (check_builtin(args))
-				return (1);
-			handle_command(args);
+			fprintf(stderr, "./hsh: 1: %s: not found\n", arguments[0]);
+			exit(127);
 		}
 	}
-
-	return (1);
 }
 
 /**
- * main - Entry point for the simple shell
- *
- * Return: Always 0
+ * input - prompts user for input
+ * @command: pointer to input buffer
+ * @size: pointer to buffer size
  */
-int main(void)
+void input(char **command, size_t *size)
 {
-	size_t len = 0;
-	char *args[MAX_ARGS];
+	ssize_t read_bytes;
 
-	display_prompt();
+	read_bytes = getline(command, size, stdin);
+	if (read_bytes == EOF)
+	{
+		if (isatty(STDIN_FILENO))
+			printf("\n");
+		if (*command != NULL)
+			free(*command);
+		exit(EXIT_SUCCESS);
+	}
+	if ((*command)[read_bytes - 1] == '\n')
+		(*command)[read_bytes - 1] = '\0';
+}
 
-	while (process_input(args, &len))
-		display_prompt();
+/**
+ * main - entry point for the shell
+ * @argc: argument count
+ * @argv: argument vector
+ * @envp: environment variables
+ * Return: 0 on success
+ */
+int main(int argc, char *argv[], char **envp)
+{
+	size_t size;
 
-	free(line);
-	return (last_status);
+	env = envp;
+	command = NULL;
+	(void)argv;
+
+	if (argc > 1)
+	{
+		printf("./shell: command does not exist\n");
+		exit(EXIT_FAILURE);
+	}
+
+	while (1)
+	{
+		size = 0;
+		if (isatty(STDIN_FILENO))
+			printf("($) ");
+		input(&command, &size);
+
+		if (strcmp(command, "exit") == 0)
+		{
+			free(command);
+			exit(EXIT_SUCCESS);
+		}
+		if (strcmp(command, "env") == 0)
+		{
+			print_env();
+			free(command);
+			exit(EXIT_SUCCESS);
+		}
+		if (_getenv("PATH", envp) == NULL)
+		{
+			if (command[0] != '/')
+			{
+				fprintf(stderr, "./hsh: 1: %s: not found\n", command);
+				free(command);
+				exit(127);
+			}
+		}
+		parse(command, envp);
+		free(command);
+	}
+	return (0);
 }
