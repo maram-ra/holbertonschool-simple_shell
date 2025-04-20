@@ -30,6 +30,10 @@ void parse(char command[], char **envp)
 	char *token;
 	int i = 0;
 
+
+	while (isspace(*command))
+		command++;
+
 	token = strtok(command, " ");
 	while (token && i < 10)
 	{
@@ -41,6 +45,7 @@ void parse(char command[], char **envp)
 	if (i > 0)
 		execute(args, envp);
 }
+
 
 /**
  * input - handles user input

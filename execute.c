@@ -39,15 +39,16 @@ char *_getenv(const char *name, char **envp)
  */
 char *pathfinder(char *cmd, char **envp)
 {
-	char *path = _getenv("PATH", envp);
-	char *tok, *full;
+	char *path, *tok, *full;
 	size_t len;
 
-	if (!path)
-		return (NULL);
-
+	/* ⭐️ التحقق من وجود / قبل أي شيء */
 	if (strchr(cmd, '/') != NULL && access(cmd, X_OK) == 0)
 		return (strdup(cmd));
+
+	path = _getenv("PATH", envp);
+	if (!path)
+		return (NULL);
 
 	path = strdup(path);
 	if (!path)
