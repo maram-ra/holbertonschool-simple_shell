@@ -1,23 +1,21 @@
 #include "shell.h"
 
-char *fullpath = NULL;
-
 /**
- * printerror - prints error
+ * printerror - prints command not found error
  * @command: command inserted
  */
 void printerror(char *const command[])
 {
 	fprintf(stderr, "./hsh: 1: %s: not found\n", command[0]);
-	free(*command);
+	free(command[0]);
 	exit(127);
 }
 
 /**
- * _getenv - get environment variable
+ * _getenv - gets environment variable
  * @name: name of environment variable
- * @envp: pointer to environment variables
- * Return: pointer to environment variable
+ * @envp: environment variables
+ * Return: pointer to value or NULL
  */
 char *_getenv(const char *name, char **envp)
 {
@@ -27,106 +25,90 @@ char *_getenv(const char *name, char **envp)
 	for (env = envp; *env != NULL; env++)
 	{
 		separator = strchr(*env, '=');
-		if (separator != NULL)
-		{
-			if (strncmp(*env, name, separator - *env) == 0)
-				return (separator + 1);
-		}
+		if (separator && strncmp(*env, name, separator - *env) == 0)
+			return (separator + 1);
 	}
 	return (NULL);
 }
 
 /**
- * pathfinder - finds the correct path for given alias
- * @cmd: command to find in PATH
- * @command: command array to update
- * @envp: pointer to environment variables
- * Return: updated command or NULL if not found
+ * pathfinder - builds full path to command
+ * @cmd: command string
+ * @envp: environment
+ * Return: full path string or NULL
  */
-char **pathfinder(char *cmd, char **command, char **envp)
+char *pathfinder(char *cmd, char **envp)
 {
-	char *current_path, *temp_path;
-	char *path_tok;
-	size_t arglen = strlen(cmd);
+	char *path = _getenv("PATH", envp);
+	char *tok, *full;
+	size_t len;
 
-	if (strchr(cmd, '/') != NULL && access(cmd, F_OK) == 0)
-	{
-		command[0] = cmd;
-		return (command);
-	}
-
-	current_path = _getenv("PATH", envp);
-	if (current_path == NULL)
+	if (!path)
 		return (NULL);
 
-	temp_path = strdup(current_path);
-	if (!temp_path)
+	if (strchr(cmd, '/') != NULL && access(cmd, X_OK) == 0)
+		return (strdup(cmd));
+
+	path = strdup(path);
+	if (!path)
 		return (NULL);
 
-	path_tok = strtok(temp_path, ":");
-	while (path_tok)
+	tok = strtok(path, ":");
+	while (tok)
 	{
-		fullpath = malloc(arglen + strlen(path_tok) + 2);
-		if (!fullpath)
+		len = strlen(tok) + strlen(cmd) + 2;
+		full = malloc(len);
+		if (!full)
 		{
-			free(temp_path);
+			free(path);
 			return (NULL);
 		}
-		sprintf(fullpath, "%s/%s", path_tok, cmd);
-		if (access(fullpath, F_OK) == 0)
+		snprintf(full, len, "%s/%s", tok, cmd);
+		if (access(full, X_OK) == 0)
 		{
-			command[0] = fullpath;
-			free(temp_path);
-			return (command);
+			free(path);
+			return (full);
 		}
-		free(fullpath);
-		fullpath = NULL;
-		path_tok = strtok(NULL, ":");
+		free(full);
+		tok = strtok(NULL, ":");
 	}
-	free(temp_path);
+	free(path);
 	return (NULL);
 }
 
 /**
- * execute - function to execute commands
- * @command: input from user
- * @envp: environment path
- * Return: -1 if failed and 0 if success
+ * execute - runs the command
+ * @command: command array
+ * @envp: environment
+ * Return: 0 on success, -1 on fail
  */
 int execute(char *const command[], char **envp)
 {
-	pid_t id;
-	int status, i;
-	char **temp = pathfinder(command[0], (char **)command, envp);
+	pid_t pid;
+	int status;
+	char *fullpath = pathfinder(command[0], envp);
 
-	if (temp != NULL)
-	{
-		id = fork();
-		if (id < 0)
-		{
-			perror("fork failed");
-			return (-1);
-		}
-		else if (id == 0)
-		{
-			if (_getenv("PATH", envp) == NULL && access(command[0], F_OK) != 0)
-				printerror(command);
-			execve(temp[0], command, envp);
-			for (i = 0; command[i] != NULL; i++)
-				free(command[i]);
-			exit(EXIT_FAILURE);
-		}
-		wait(&status);
-		if (fullpath)
-			free(fullpath);
-	}
-	else
+	if (!fullpath)
 		printerror(command);
 
-	if (errno == -1)
+	pid = fork();
+	if (pid == -1)
 	{
-		free(*command);
-		exit(2);
+		perror("fork");
+		free(fullpath);
+		return (-1);
+	}
+	if (pid == 0)
+	{
+		execve(fullpath, command, envp);
+		perror("execve");
+		free(fullpath);
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		wait(&status);
+		free(fullpath);
 	}
 	return (0);
 }

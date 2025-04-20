@@ -1,5 +1,5 @@
-#ifndef SIMPLE_SHELL
-#define SIMPLE_SHELL
+#ifndef SIMPLE_SHELL_H
+#define SIMPLE_SHELL_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,14 +12,13 @@
 
 extern char **env;
 extern char *command;
-extern char *fullpath;
 
 int execute(char *const command[], char **envp);
 int print_env(void);
 char *_getenv(const char *name, char **envp);
 void parse(char command[], char **envp);
 void input(char **command, size_t *size);
-char **pathfinder(char *cmd, char **command, char **envp);
+char *pathfinder(char *cmd, char **envp);
 void printerror(char *const command[]);
 
-#endif /* SIMPLE_SHELL */
+#endif /* SIMPLE_SHELL_H */
