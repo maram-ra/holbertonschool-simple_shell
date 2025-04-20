@@ -18,12 +18,11 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
-
 /* =========================== MACROS ======================== */
 
 #define MAX_ARGS 64 /* Maximum number of arguments supported */
 #define _GNU_SOURCE /* Enable GNU extensions (e.g., getline) */
-
+#define BUFSIZE 1024
 /* ===================== GLOBAL VARIABLES ==================== */
 
 extern char **environ;
@@ -50,10 +49,14 @@ char *get_env_value(const char *name);
 char *find_command_path(char *command);
 void execute_command(char *command_path, char **args);
 void handle_command(char **args);
+void main_loop(int interactive);
 
 /* builtins */
 int check_builtin(char **args);
 void print_env(void);
 void free_args_and_exit(void);
+
+/* Error Handling */
+void print_error(char *cmd, char *msg);
 
 #endif /* SHELL_H */

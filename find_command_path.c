@@ -3,7 +3,6 @@
 /**
  * find_command_path - Searches for a command in PATH
  * @command: The command to find
- *
  * Return: Full path if found, otherwise NULL
  */
 char *find_command_path(char *command)
@@ -12,7 +11,7 @@ char *find_command_path(char *command)
 	char full_path[1024];
 	struct stat st;
 
-	/* If the command contains '/', return directly relative or absolute path */
+	/* If command contains '/', return it directly relative or absolute path */
 	if (strchr(command, '/'))
 	{
 		if (stat(command, &st) == 0 && (st.st_mode & S_IXUSR))
@@ -32,7 +31,8 @@ char *find_command_path(char *command)
 	dir = strtok(path_copy, ":");
 	while (dir)
 	{
-		snprintf(full_path, sizeof(full_path), "%s/%s", dir, command);
+		snprintf(full_path, sizeof(full_path),
+			"%s/%s", dir, command);
 		if (stat(full_path, &st) == 0 && (st.st_mode & S_IXUSR))
 		{
 			free(path_copy);
