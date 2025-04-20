@@ -83,27 +83,12 @@ int execute(char *const command[], char **envp)
 {
 	pid_t pid;
 	int status;
-	char *fullpath;
+	char *fullpath = pathfinder(command[0], envp);
 
-
-	if (strchr(command[0], '/') != NULL)
+	if (!fullpath)
 	{
-		if (access(command[0], X_OK) == 0)
-			fullpath = strdup(command[0]);
-		else
-		{
-			printerror(command);
-			return (-1);
-		}
-	}
-	else
-	{
-		fullpath = pathfinder(command[0], envp);
-		if (!fullpath)
-		{
-			printerror(command);
-			return (-1);
-		}
+		printerror(command);
+		return (-1);
 	}
 
 	pid = fork();
