@@ -4,106 +4,128 @@ char **env;
 char *command;
 
 /**
- * print_env - prints environment variables
- * Return: 0 on success
+ * print_env - prints the environment
+ * Return: 0 on success, -1 on error
  */
 int print_env(void)
 {
 	int i = 0;
 
+	if (env == NULL)
+		return (-1);
+
 	while (env[i])
 	{
-		printf("%s\n", env[i]);
-		i++;
+		printf("%s\n", env[i++]);
 	}
 	return (0);
 }
 
 /**
- * parse - tokenizes and executes command
- * @command: user input
- * @envp: environment
+ * parse - tokenizes the command
+ * @command: command from user
+ * @envp: environment variables
+ * @status: pointer to last command status
  */
-void parse(char command[], char **envp)
+void parse(char command[], char **envp, int *status)
 {
-	char *args[11];
-	char *token;
-	int i = 0;
+	char *arguments[11];
+	char *token = strtok(command, " ");
+	int arg_count = 0;
 
-	token = strtok(command, " ");
-	while (token && i < 10)
+	while (token != NULL && arg_count < 10)
 	{
-		args[i++] = token;
+		arguments[arg_count++] = token;
 		token = strtok(NULL, " ");
 	}
-	args[i] = NULL;
+	if (arg_count > 10)
+	{
+		perror("Error: Too many arguments");
+		return;
+	}
+	arguments[arg_count] = NULL;
 
-	if (i > 0)
-		execute(args, envp);
+	if (arg_count > 0)
+	{
+		*status = execute(arguments, envp);
+	}
 }
 
 /**
- * input - handles user input
+ * input - prompts user for input
  * @command: pointer to input buffer
- * @size: size of buffer
+ * @size: pointer to buffer size
  */
 void input(char **command, size_t *size)
 {
-	ssize_t nread = getline(command, size, stdin);
+	ssize_t read_bytes;
 
-	if (nread == -1)
+	read_bytes = getline(command, size, stdin);
+	if (read_bytes == EOF)
 	{
 		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "\n", 1);
-		free(*command);
+			printf("\n");
+		if (*command != NULL)
+			free(*command);
 		exit(EXIT_SUCCESS);
 	}
-	if ((*command)[nread - 1] == '\n')
-		(*command)[nread - 1] = '\0';
+	if ((*command)[read_bytes - 1] == '\n')
+		(*command)[read_bytes - 1] = '\0';
 }
 
 /**
- * main - shell loop
+ * main - entry point for the shell
  * @argc: argument count
  * @argv: argument vector
- * @envp: environment
- * Return: 0
+ * @envp: environment variables
+ * Return: 0 on success
  */
 int main(int argc, char *argv[], char **envp)
 {
 	size_t size;
+	int last_status = 0;
 
-	(void)argv;
 	env = envp;
+	command = NULL;
+	(void)argv;
 
 	if (argc > 1)
 	{
-		fprintf(stderr, "./hsh: Too many arguments\n");
+		fprintf(stderr, "./hsh: command does not exist\n");
 		exit(EXIT_FAILURE);
 	}
 
 	while (1)
 	{
-		command = NULL;
 		size = 0;
 
 		if (isatty(STDIN_FILENO))
 			printf("($) ");
+
 		input(&command, &size);
 
 		if (strcmp(command, "exit") == 0)
 		{
 			free(command);
-			exit(EXIT_SUCCESS);
+			exit(last_status);
 		}
-		else if (strcmp(command, "env") == 0)
+
+		if (strcmp(command, "env") == 0)
 		{
 			print_env();
+			free(command);
+			continue;
 		}
-		else
+
+		if (_getenv("PATH", envp) == NULL && command[0] != '/')
 		{
-			parse(command, envp);
+			fprintf(stderr, "./hsh: 1: %s: not found\n", command);
+			free(command);
+			last_status = 127;
+			continue;
 		}
+
+		parse(command, envp, &last_status);
 		free(command);
 	}
 	return (0);

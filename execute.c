@@ -1,21 +1,22 @@
 #include "shell.h"
 
+char *fullpath = NULL;
+
 /**
- * printerror - prints command not found error
+ * printerror - prints error
  * @command: command inserted
  */
 void printerror(char *const command[])
 {
 	fprintf(stderr, "./hsh: 1: %s: not found\n", command[0]);
-	free(command[0]);
 	exit(127);
 }
 
 /**
- * _getenv - gets environment variable
+ * _getenv - get environment variable
  * @name: name of environment variable
- * @envp: environment variables
- * Return: pointer to value or NULL
+ * @envp: pointer to environment variables
+ * Return: pointer to environment variable
  */
 char *_getenv(const char *name, char **envp)
 {
@@ -25,90 +26,111 @@ char *_getenv(const char *name, char **envp)
 	for (env = envp; *env != NULL; env++)
 	{
 		separator = strchr(*env, '=');
-		if (separator && strncmp(*env, name, separator - *env) == 0)
-			return (separator + 1);
+		if (separator != NULL)
+		{
+			if (strncmp(*env, name, separator - *env) == 0)
+				return (separator + 1);
+		}
 	}
 	return (NULL);
 }
 
 /**
- * pathfinder - builds full path to command
- * @cmd: command string
- * @envp: environment
- * Return: full path string or NULL
+ * pathfinder - finds the correct path for given alias
+ * @cmd: command to find in PATH
+ * @command: command array to update
+ * @envp: pointer to environment variables
+ * Return: updated command or NULL if not found
  */
-char *pathfinder(char *cmd, char **envp)
+char **pathfinder(char *cmd, char **command, char **envp)
 {
-	char *path = _getenv("PATH", envp);
-	char *tok, *full;
-	size_t len;
+	char *current_path, *temp_path;
+	char *path_tok;
+	size_t arglen = strlen(cmd);
 
-	if (!path)
-		return (NULL);
-
-	if (strchr(cmd, '/') != NULL && access(cmd, X_OK) == 0)
-		return (strdup(cmd));
-
-	path = strdup(path);
-	if (!path)
-		return (NULL);
-
-	tok = strtok(path, ":");
-	while (tok)
+	if (strchr(cmd, '/') != NULL && access(cmd, F_OK) == 0)
 	{
-		len = strlen(tok) + strlen(cmd) + 2;
-		full = malloc(len);
-		if (!full)
+		command[0] = cmd;
+		return (command);
+	}
+
+	current_path = _getenv("PATH", envp);
+	if (current_path == NULL)
+		return (NULL);
+
+	temp_path = strdup(current_path);
+	if (!temp_path)
+		return (NULL);
+
+	path_tok = strtok(temp_path, ":");
+	while (path_tok)
+	{
+		fullpath = malloc(arglen + strlen(path_tok) + 2);
+		if (!fullpath)
 		{
-			free(path);
+			free(temp_path);
 			return (NULL);
 		}
-		snprintf(full, len, "%s/%s", tok, cmd);
-		if (access(full, X_OK) == 0)
+
+		sprintf(fullpath, "%s/%s", path_tok, cmd);
+
+		if (access(fullpath, F_OK) == 0)
 		{
-			free(path);
-			return (full);
+			command[0] = fullpath;
+			free(temp_path);
+			return (command);
 		}
-		free(full);
-		tok = strtok(NULL, ":");
+
+		free(fullpath);
+		fullpath = NULL;
+		path_tok = strtok(NULL, ":");
 	}
-	free(path);
+
+	free(temp_path);
 	return (NULL);
 }
 
 /**
- * execute - runs the command
- * @command: command array
- * @envp: environment
- * Return: 0 on success, -1 on fail
+ * execute - function to execute commands
+ * @command: input from user
+ * @envp: environment path
+ * Return: exit status code
  */
 int execute(char *const command[], char **envp)
 {
-	pid_t pid;
+	pid_t id;
 	int status;
-	char *fullpath = pathfinder(command[0], envp);
+	char **temp = pathfinder(command[0], (char **)command, envp);
 
-	if (!fullpath)
-		printerror(command);
+	if (temp != NULL)
+	{
+		id = fork();
+		if (id < 0)
+		{
+			perror("fork failed");
+			return (-1);
+		}
+		else if (id == 0)
+		{
+			execve(temp[0], command, envp);
+			perror("execve failed");
+			exit(errno == ENOENT ? 127 : 2);
+		}
+		waitpid(id, &status, 0);
 
-	pid = fork();
-	if (pid == -1)
-	{
-		perror("fork");
-		free(fullpath);
-		return (-1);
-	}
-	if (pid == 0)
-	{
-		execve(fullpath, command, envp);
-		perror("execve");
-		free(fullpath);
-		exit(EXIT_FAILURE);
+		if (fullpath)
+		{
+			free(fullpath);
+			fullpath = NULL;
+		}
+
+		if (WIFEXITED(status))
+			return (WEXITSTATUS(status));
 	}
 	else
 	{
-		wait(&status);
-		free(fullpath);
+		printerror(command);
 	}
-	return (0);
+
+	return (2);
 }
