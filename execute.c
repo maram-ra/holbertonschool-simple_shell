@@ -86,10 +86,27 @@ int execute(char *const command[], char **envp)
 {
 	pid_t pid;
 	int status;
-	char *fullpath = pathfinder(command[0], envp);
+	char *fullpath;
 
-	if (!fullpath)
-		printerror(command);
+
+	if (strchr(command[0], '/') != NULL)
+	{
+		if (access(command[0], X_OK) != 0)
+		{
+			printerror(command);
+			return (127);
+		}
+		fullpath = strdup(command[0]);
+	}
+	else
+	{
+		fullpath = pathfinder(command[0], envp);
+		if (!fullpath)
+		{
+			printerror(command);
+			return (127);
+		}
+	}
 
 	pid = fork();
 	if (pid == -1)
@@ -100,7 +117,8 @@ int execute(char *const command[], char **envp)
 	}
 	if (pid == 0)
 	{
-		execve(fullpath, command, envp);
+
+		execve(fullpath, command, envp ? envp : environ);
 		perror("execve");
 		free(fullpath);
 		exit(EXIT_FAILURE);
@@ -112,3 +130,4 @@ int execute(char *const command[], char **envp)
 	}
 	return (0);
 }
+

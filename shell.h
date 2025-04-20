@@ -12,6 +12,7 @@
 
 extern char **env;
 extern char *command;
+extern char **environ;
 
 int execute(char *const command[], char **envp);
 int print_env(void);
