@@ -39,14 +39,10 @@ char *_getenv(const char *name, char **envp)
  */
 char *pathfinder(char *cmd, char **envp)
 {
-	char *path, *tok, *full;
+	char *path = _getenv("PATH", envp);
+	char *tok, *full;
 	size_t len;
 
-	/* ⭐️ التحقق من وجود / قبل أي شيء */
-	if (strchr(cmd, '/') != NULL && access(cmd, X_OK) == 0)
-		return (strdup(cmd));
-
-	path = _getenv("PATH", envp);
 	if (!path)
 		return (NULL);
 
@@ -87,10 +83,28 @@ int execute(char *const command[], char **envp)
 {
 	pid_t pid;
 	int status;
-	char *fullpath = pathfinder(command[0], envp);
+	char *fullpath;
 
-	if (!fullpath)
-		printerror(command);
+
+	if (strchr(command[0], '/') != NULL)
+	{
+		if (access(command[0], X_OK) == 0)
+			fullpath = strdup(command[0]);
+		else
+		{
+			printerror(command);
+			return (-1);
+		}
+	}
+	else
+	{
+		fullpath = pathfinder(command[0], envp);
+		if (!fullpath)
+		{
+			printerror(command);
+			return (-1);
+		}
+	}
 
 	pid = fork();
 	if (pid == -1)
@@ -113,3 +127,4 @@ int execute(char *const command[], char **envp)
 	}
 	return (0);
 }
+
