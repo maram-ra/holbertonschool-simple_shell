@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <ctype.h>
 
 char **env;
 char *command;
