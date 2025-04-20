@@ -46,6 +46,9 @@ char *pathfinder(char *cmd, char **envp)
 	if (!path)
 		return (NULL);
 
+	if (strchr(cmd, '/') != NULL && access(cmd, X_OK) == 0)
+		return (strdup(cmd));
+
 	path = strdup(path);
 	if (!path)
 		return (NULL);
@@ -86,10 +89,7 @@ int execute(char *const command[], char **envp)
 	char *fullpath = pathfinder(command[0], envp);
 
 	if (!fullpath)
-	{
 		printerror(command);
-		return (-1);
-	}
 
 	pid = fork();
 	if (pid == -1)
@@ -112,4 +112,3 @@ int execute(char *const command[], char **envp)
 	}
 	return (0);
 }
-

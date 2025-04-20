@@ -1,5 +1,4 @@
 #include "shell.h"
-#include <ctype.h>
 
 char **env;
 char *command;
@@ -42,7 +41,6 @@ void parse(char command[], char **envp)
 	if (i > 0)
 		execute(args, envp);
 }
-
 
 /**
  * input - handles user input
@@ -109,4 +107,4 @@ int main(int argc, char *argv[], char **envp)
 		free(command);
 	}
 	return (0);
-}
+} 
