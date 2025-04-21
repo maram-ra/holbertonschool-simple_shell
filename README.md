@@ -136,8 +136,7 @@ $ exit
 | `shell.h`                | Header file containing function prototypes and macros                   |
 | `main.c`                 | Contains the main shell loop and input parsing                          |
 | `execute.c`              | Contains the `execute` and command handling logic                       |
-| `input.c`                | Contains functions for reading user input                              |
-| `pathfinder.c`           | Handles searching the `PATH` for executable commands                   |
+
 
 ## 🏝️ Function Prototypes & Descriptions
 
