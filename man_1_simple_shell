@@ -9,71 +9,63 @@ hsh \- simple UNIX command line interpreter
 
 .SH DESCRIPTION
 .B hsh
-is a simple shell created as a project for Holberton School. It is a basic implementation of a command-line interpreter that reads lines from either the standard input or a file, parses them, and executes commands.
+is a basic shell written in C. It reads input from the user, tokenizes it, and executes commands either via built-in functions or by searching through the PATH variable.
 
-The shell handles basic command execution with arguments, environment variables, and built-in commands like
-.B exit
-and
-.B env.
+It supports basic commands, environment handling, and simple built-ins.
 
 .SH FEATURES
 .TP
-• Display a prompt and wait for the user to type a command.
+• Prompt display: shows "($)" and waits for input.
 .TP
-• Execute commands with their full path or search in the PATH variable.
+• Executes commands from input line.
 .TP
-• Handle commands with arguments.
+• Resolves command using PATH if necessary.
 .TP
-• Exit the shell with
+• Executes commands with arguments.
+.TP
+• Handles EOF (Ctrl+D).
+.TP
+• Built-in commands:
 .B exit
-or Ctrl+D (EOF).
-.TP
-• Display environment variables with
-.B env.
+and
+.B env
 
 .SH BUILTINS
 .TP
-.B exit [status]
-Exit the shell with a given status code.
+.B exit
+Exit the shell.
 
 .TP
 .B env
-Print the current environment variables.
-
-.SH USAGE
-.TP
-To start the shell, simply run:
-.B
-./hsh
-
-Then enter a command like:
-.B
-ls -l /tmp
-
-You can also pipe or redirect commands:
-.B
-echo "ls" | ./hsh
-
-.SH EXAMPLES
-.TP
-$ ./hsh
-.br
-$ ls
-.br
-$ pwd
-.br
-$ env
-.br
-$ exit
+Display the current environment.
 
 .SH FILES
 .TP
-.I shell.h
-Header file containing function prototypes and macros.
+.I main.c
+Main loop handling input and command logic.
 
 .TP
-.I main.c
-Main source file that contains the shell loop.
+.I execute.c
+Runs commands via fork/exec and resolves PATH.
+
+.TP
+.I shell.h
+Header file for prototypes and macros.
+
+.SH USAGE
+To start the shell:
+
+.B
+./hsh
+
+Example:
+
+.B
+($) ls -l
+.br
+($) env
+.br
+($) exit
 
 .SH AUTHORS
 Maram Alsofyani and Hessah Alotaysh
@@ -81,4 +73,5 @@ Maram Alsofyani and Hessah Alotaysh
 .SH SEE ALSO
 .BR sh(1),
 .BR bash(1),
-.BR execve(2)
+.BR execve(2),
+.BR getenv(3)
