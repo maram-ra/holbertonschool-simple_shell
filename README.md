@@ -3,15 +3,15 @@
  <img src="https://github.com/user-attachments/assets/5f8d33ce-fed8-438a-935c-a9916afef26e" width="150">
  
  <dive></dive>
----
+
  <div align="center">
 
   #  C - Simple Shell Project
   
-<br/>
-<br/>
-  <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExenJlN24wYTVxMHM3ZnVyem9zeGJoOW1xcW8zMGxpeGpscWZybjJmNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13HgwGsXF0aiGY/giphy.gif" width="400">
-  <br/> <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHY4dDgydXRyaGF3bHc1M3p2bHlwN21lN29xMXhoZ3BqZjg5NWk1NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/5u20uyKnhNnZXmV2qg/giphy.gif" width="300">
+
+ <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExenJlN24wYTVxMHM3ZnVyem9zeGJoOW1xcW8zMGxpeGpscWZybjJmNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13HgwGsXF0aiGY/giphy.gif" width="400">
+  <br/> 
+  <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHY4dDgydXRyaGF3bHc1M3p2bHlwN21lN29xMXhoZ3BqZjg5NWk1NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/5u20uyKnhNnZXmV2qg/giphy.gif" width="300">
 </div>
 
 ## 🏝️ Description
@@ -90,10 +90,16 @@ This project implements a simple UNIX command-line interpreter (shell). It execu
   - **Task 6: Simple Shell 1.0**  
     Implement the `env` built-in. 
 
-  - **Task 7: Blog Post on `ls -l *.c`**  
-    Write a blog post about what happens when `ls -l *.c` is executed. 
-
 </details>
+
+  - **🌟 Advanced Task 7: Blog Post on `ls -l *.c`**  
+    Write a blog post about what happens when `ls -l *.c` is executed.
+
+    <p style="text-align: center;">
+  <a href="https://www.linkedin.com/pulse/what-really-happens-when-you-type-ls-l-c-shell-hessah-a-yfeue">
+    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmM5MDI4ODlhc3Z5MDB4bGQ3OG1xZTQybTZsdWY1M3g3YnltazU5ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3Ksb1ZTUJ3n6tahT8O/giphy.gif" style="display: block; margin: 0 auto;" width="25%" height="25%" />
+  </a>
+</p>
 
 ## 🏝️ How to Run
 
