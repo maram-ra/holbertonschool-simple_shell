@@ -14,19 +14,16 @@
   <br/> <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHY4dDgydXRyaGF3bHc1M3p2bHlwN21lN29xMXhoZ3BqZjg5NWk1NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/5u20uyKnhNnZXmV2qg/giphy.gif" width="300">
 </div>
 
-## Description
+## 🏝️ Description
 
 This shell was created by Maram and Hessah as a project at Holberton School.  
-It is a simple UNIX command-line interpreter written in C.  
-
-The shell accepts commands from the user via the command line interface (CLI),  
-supports both interactive and non-interactive modes, and executes standard system commands.
+This project implements a simple UNIX command-line interpreter (shell). It executes commands, handles built-in commands (`exit`, `env`), and works with the environment variables. It supports both interactive and non-interactive modes, and executes standard system commands.
 
 
 ---
 
 
-## Features
+## 🏝️ Features
 
 - Display a prompt and wait for the user to type a command
 - Handle simple commands with arguments (e.g. `ls -l /tmp`)
@@ -40,108 +37,81 @@ supports both interactive and non-interactive modes, and executes standard syste
 - Handle command not found errors with proper exit status `127`
 
 
----
+## 🏝️ Files Overview
 
-## 🛠️ How to Compile
+| File                     | Description                                                            |
+|--------------------------|------------------------------------------------------------------------|
+| `README.md`              | Project documentation and instructions                                 |
+| `man_1_simple_shell`     | Manual page for the shell                                              |
+| `AUTHORS`                | List of contributors to the project                                    |
+| `shell.h`                | Header file containing function prototypes and macros                   |
+| `main.c`                 | Contains the main shell loop and input parsing                          |
+| `execute.c`              | Contains the `execute` and command handling logic                       |
+| `input.c`                | Contains functions for reading user input                              |
+| `pathfinder.c`           | Handles searching the `PATH` for executable commands                   |
 
-```bash
-gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
-```
-----
-##  Project Structure
+## 🏝️ Function Prototypes & Descriptions
 
-| File              | Description                                          |
-|-------------------|------------------------------------------------------|
-| `main.c`          | Entry point, runs the shell loop                    |
-| `shell.h`         | Header file with all function prototypes and macros |
-| `utils.c`         | Helper functions (e.g., string length, duplicates)  |
-| `builtins.c`      | Built-in command implementations (`exit`, `env`)    |
-| `get_env_value.c` | Retrieves values from the environment               |
-| `find_command_path.c` | Finds executable using `PATH`                  |
-| `execute.c`       | Executes external programs                          |
-| `globals.c`       | Global variables (e.g., `line`, `last_status`)      |
-
-## 🔧 Function Prototypes & Descriptions
-| **Prototype**                                      | **Description**                                           |
-|----------------------------------------------------|-----------------------------------------------------------|
-| `int main(void);`                                  | Entry point of the shell program                          |
-| `int only_spaces(char *s);`                        | Checks if the line is only whitespace                     |
-| `void parse_arguments(char *line, char **args);`   | Splits input line into command/arguments                  |
-| `char *find_command_path(char *command);`          | Searches for an executable in the `PATH`                  |
-| `int handle_command(char **args);`                 | Executes a command using `fork` and `execve`              |
-| `void execute_command(char *path_cmd, char **args);`| Executes command if path is valid                        |
-| `char *get_env_value(const char *name);`           | Retrieves the value of an environment variable            |
-| `char *_strdup(const char *str);`                  | Duplicates a string (custom `_strdup`)                    |
-| `int _strlen(const char *s);`                      | Calculates the length of a string                         |
-| `int _strncmp(const char *s1, const char *s2, size_t n);` | Compares strings up to `n` characters           |
-| `void print_env(void);`                            | Prints current environment variables                      |
+| **Function Prototype**                                    | **Description** |
+|------------------------------------------------------------|-----------------|
+| `int main(int argc, char *argv[], char **envp)`           | **Entry point** of the shell. It initializes the shell, enters the command loop, handles input, and calls functions to process commands. |
+| `void input(char **command, size_t *size)`                | Reads user input from the terminal using `getline()`. It stores the input in the provided buffer and handles EOF gracefully. |
+| `void parse(char command[], char **envp)`                 | **Tokenizes** the user input (`command`) into individual arguments and passes them to the `execute()` function for execution. |
+| `int execute(char *const command[], char **envp)`         | **Executes** the command using `fork()` and `execve()`. It searches for the command in the directories listed in the `PATH` environment variable and runs it. If the command isn't found, it calls `printerror()`. |
+| `char *_getenv(const char *name, char **envp)`             | Custom function to **retrieve environment variables**. It mimics `getenv()` by searching through the environment variables in `envp`. |
+| `char *pathfinder(char *cmd, char **envp)`                | **Builds the full path** to the executable command by searching through the directories listed in the `PATH` environment variable. |
+| `int print_env(void)`                                     | Built-in command `env` that **prints all environment variables** in the current environment. |
+| `void printerror(char *const command[])`                  | Prints an error message when a command is not found, in the format `./hsh: 1: <command>: not found`, and exits with a status code of 127. |
 
 
-## Tasks Breakdown
-####  0. README, man, AUTHORS
-- You are reading it now ✨
+## Tasks Overview ⤵️
 
-- Created `man_1_simple_shell` and `AUTHORS` file
-- See the manual:
+<details>
+  <summary>Task Breakdown</summary>
 
-```bash
-man ./hsh.1
+  - **Task 0: README, man, AUTHORS**  
+    Create a `README.md`, a `man` page, and an `AUTHORS` file. 
 
-```
+  - **Task 1: Betty Style**  
+    Adhere to Betty coding style. 
 
-#### 1. Betty would be proud
-- All code follows Holberton’s Betty style:
+  - **Task 2: Simple Shell 0.1**  
+    Implement a basic shell with command execution. 
 
-- Max 5 functions per file
+  - **Task 3: Simple Shell 0.2**  
+    Handle commands with arguments. 
 
-- Max 40 lines per function (unless justified)
+  - **Task 4: Simple Shell 0.3**  
+    Implement PATH handling for locating commands. 
 
-- No global variables
+  - **Task 5: Simple Shell 0.4**  
+    Implement the `exit` built-in. 
 
-- Proper header comments
+  - **Task 6: Simple Shell 1.0**  
+    Implement the `env` built-in. 
 
-#### 2. Simple shell 0.1
-- Reads user input from `stdin`
+  - **Task 7: Blog Post on `ls -l *.c`**  
+    Write a blog post about what happens when `ls -l *.c` is executed. 
 
-- Parses input into tokens
+</details>
 
-- Executes commands using `execve`
+## 🏝️ How to Run
 
-- Forks a new process for each command
+1. Clone the repository:  
+   `git clone https://github.com/username/holbertonschool-simple_shell.git`
 
-#### 3. Simple shell 0.2
-- Handles command not found errors
+2. Navigate into the directory:  
+   `cd holbertonschool-simple_shell`
 
-- Exits gracefully with correct status code
+3. Compile the code:  
+   `gcc -Wall -Werror -Wextra -pedantic *.c -o shell`
 
-- Prompts `$` in interactive mode
+4. Run the shell:  
+   `./shell`
 
-#### 4. Simple shell 0.3
-- Handles PATH search:
 
-- Splits `PATH` variable into directories
 
-- Appends command to each directory
-
-- Checks if file exists and is executable
-
-#### 5. Simple shell 0.4
-- Implements `exit` built-in
-
-- Ends shell with optional status code
-
-- Implements `env` built-in
-
-- Prints current environment variables
-
-#### 6. Simple shell 1.0
-- Shell supports all of the above in both interactive and non-interactive modes:
-
-```bash
-echo "ls -l" | ./hsh
-```
-
-## 🔧 Usage
+## 🏝️ Usage
 ```bash
 $ ./hsh
 $ ls
@@ -149,4 +119,21 @@ $ pwd
 $ env
 $ exit
 ```
+
+---
+
+
+##  <img src="https://img.icons8.com/ios/452/github.png" width="30"/> Authors: 
+We Worked together to implement, test, and document each code and file together. Each member did contribute to code, debug, and analyze time complexities.
+
+- Maram Alsofyani
+- Hessah Alotaysh
+<br>
+
+[![GitHub](https://img.shields.io/badge/GitHub-Maram_Alsofyani-lightpink)](https://github.com/maram-ra)
+[![GitHub](https://img.shields.io/badge/GitHub-Hessah_Alotaysh-lightpink)](https://github.com/hessafa)
+
+
+
+
 
