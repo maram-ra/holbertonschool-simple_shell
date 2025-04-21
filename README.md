@@ -89,10 +89,36 @@ This project implements a simple UNIX command-line interpreter (shell). It execu
     Implement the `env` built-in. 
 
 </details>
+
+ 
+ <details>
+ 
+<summary> Click here to see the flowchart of the project: </summary> 
+
+
+```mermaid
+graph TD
+    A[Start Shell] --> B[Display Shell Prompt]
+    B --> C[Read User Input]
+    C --> D{Check for EOF / Exit?}
+    D -- No --> E[Parse Input]
+    D -- Yes --> K[Loop Back to Prompt]
+    E --> F{Built-in Command?}
+    F -- Yes --> G[Execute Built-in]
+    F -- No --> H[Search PATH & Find Full Path]
+    G --> K
+    H --> I[Execute Command with fork/execve]
+    I --> J[Wait for Process]
+    J --> K
+    K --> B
+```
+ <br>
+ <br>
+</details>
  <br/>
  <br/>
  
-  - **🌟 Advanced Task 7: Blog Post on `ls -l *.c`**  
+ - **🌟 Advanced Task 7: Blog Post on `ls -l *.c`**  
     Write a blog post about what happens when `ls -l *.c` is executed.
 
   <div align="center">  <p style="text-align: center;">
@@ -100,6 +126,9 @@ This project implements a simple UNIX command-line interpreter (shell). It execu
     <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmM5MDI4ODlhc3Z5MDB4bGQ3OG1xZTQybTZsdWY1M3g3YnltazU5ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3Ksb1ZTUJ3n6tahT8O/giphy.gif" style="display: block; margin: 0 auto;" width="25%" height="25%" />
   </a> </p></div
 </p>
+
+
+---
 
 ## 🏝️ How to Run
 
@@ -138,7 +167,6 @@ We Worked together to implement, test, and document each code and file together.
 
 [![GitHub](https://img.shields.io/badge/GitHub-Maram_Alsofyani-lightpink)](https://github.com/maram-ra)
 [![GitHub](https://img.shields.io/badge/GitHub-Hessah_Alotaysh-lightpink)](https://github.com/hessafa)
-
 
 
 
