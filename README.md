@@ -65,9 +65,9 @@ This project implements a simple UNIX command-line interpreter (shell). It execu
 
 
 ## Tasks Overview ⤵️
-
-<details>
-  <summary>Task Breakdown</summary>
+ <details>
+ 
+<summary> Tasks Breakdown List : </summary> 
 
   - **Task 0: README, man, AUTHORS**  
     Create a `README.md`, a `man` page, and an `AUTHORS` file. 
@@ -91,7 +91,9 @@ This project implements a simple UNIX command-line interpreter (shell). It execu
     Implement the `env` built-in. 
 
 </details>
-
+ <br/>
+ <br/>
+ 
   - **🌟 Advanced Task 7: Blog Post on `ls -l *.c`**  
     Write a blog post about what happens when `ls -l *.c` is executed.
 
