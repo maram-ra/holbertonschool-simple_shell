@@ -1,12 +1,10 @@
-
-
  <img src="https://github.com/user-attachments/assets/5f8d33ce-fed8-438a-935c-a9916afef26e" width="150">
  
  <dive></dive>
 
  <div align="center">
 
-  #  C - Simple Shell Project
+  #  ˖°𓇼🌊⋆🐚🫧 C - Simple Shell Project ˖°𓇼🌊⋆🐚🫧
   
 
  <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExenJlN24wYTVxMHM3ZnVyem9zeGJoOW1xcW8zMGxpeGpscWZybjJmNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13HgwGsXF0aiGY/giphy.gif" width="400">
@@ -97,10 +95,10 @@ This project implements a simple UNIX command-line interpreter (shell). It execu
   - **🌟 Advanced Task 7: Blog Post on `ls -l *.c`**  
     Write a blog post about what happens when `ls -l *.c` is executed.
 
-    <p style="text-align: center;">
+  <div align="center">  <p style="text-align: center;">
   <a href="https://www.linkedin.com/pulse/what-really-happens-when-you-type-ls-l-c-shell-hessah-a-yfeue">
     <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmM5MDI4ODlhc3Z5MDB4bGQ3OG1xZTQybTZsdWY1M3g3YnltazU5ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3Ksb1ZTUJ3n6tahT8O/giphy.gif" style="display: block; margin: 0 auto;" width="25%" height="25%" />
-  </a>
+  </a> </p></div
 </p>
 
 ## 🏝️ How to Run
