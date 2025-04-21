@@ -19,7 +19,98 @@ This project implements a simple UNIX command-line interpreter (shell). It execu
 
 
 ---
+## Tasks Overview ⤵️
+ <details>
+ 
+<summary> Tasks Breakdown List : </summary> 
 
+  - **Task 0: README, man, AUTHORS**  
+    Create a `README.md`, a `man` page, and an `AUTHORS` file. 
+
+  - **Task 1: Betty Style**  
+    Adhere to Betty coding style. 
+
+  - **Task 2: Simple Shell 0.1**  
+    Implement a basic shell with command execution. 
+
+  - **Task 3: Simple Shell 0.2**  
+    Handle commands with arguments. 
+
+  - **Task 4: Simple Shell 0.3**  
+    Implement PATH handling for locating commands. 
+
+  - **Task 5: Simple Shell 0.4**  
+    Implement the `exit` built-in. 
+
+  - **Task 6: Simple Shell 1.0**  
+    Implement the `env` built-in. 
+
+</details>
+
+ <details>
+ 
+<summary> Click here to see the flowchart of the project: </summary> 
+
+
+```mermaid
+graph TD
+    A[Start Shell] --> B[Display Shell Prompt]
+    B --> C[Read User Input]
+    C --> D{Check for EOF / Exit?}
+    D -- No --> E[Parse Input]
+    D -- Yes --> K[Loop Back to Prompt]
+    E --> F{Built-in Command?}
+    F -- Yes --> G[Execute Built-in]
+    F -- No --> H[Search PATH & Find Full Path]
+    G --> K
+    H --> I[Execute Command with fork/execve]
+    I --> J[Wait for Process]
+    J --> K
+    K --> B
+```
+ <br>
+ <br>
+</details>
+ <br/>
+ <br/>
+
+ 
+ - **🌟 Advanced Task 7: Blog Post on `ls -l *.c`**  
+    Write a blog post about what happens when `ls -l *.c` is executed.
+
+  <div align="center">  <p style="text-align: center;">
+  <a href="https://www.linkedin.com/pulse/what-really-happens-when-you-type-ls-l-c-shell-hessah-a-yfeue">
+    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmM5MDI4ODlhc3Z5MDB4bGQ3OG1xZTQybTZsdWY1M3g3YnltazU5ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3Ksb1ZTUJ3n6tahT8O/giphy.gif" style="display: block; margin: 0 auto;" width="25%" height="25%" />
+  </a> </p></div
+</p>
+
+
+---
+
+## 🏝️ How to Run
+
+1. Clone the repository:  
+   `git clone https://github.com/username/holbertonschool-simple_shell.git`
+
+2. Navigate into the directory:  
+   `cd holbertonschool-simple_shell`
+
+3. Compile the code:  
+   `gcc -Wall -Werror -Wextra -pedantic *.c -o shell`
+
+4. Run the shell:  
+   `./shell`
+
+
+
+## 🏝️ Usage
+```bash
+$ ./hsh
+$ ls
+$ pwd
+$ env
+$ exit
+```
 
 ## 🏝️ Features
 
@@ -61,99 +152,6 @@ This project implements a simple UNIX command-line interpreter (shell). It execu
 | `int print_env(void)`                                     | Built-in command `env` that **prints all environment variables** in the current environment. |
 | `void printerror(char *const command[])`                  | Prints an error message when a command is not found, in the format `./hsh: 1: <command>: not found`, and exits with a status code of 127. |
 
-
-## Tasks Overview ⤵️
- <details>
- 
-<summary> Tasks Breakdown List : </summary> 
-
-  - **Task 0: README, man, AUTHORS**  
-    Create a `README.md`, a `man` page, and an `AUTHORS` file. 
-
-  - **Task 1: Betty Style**  
-    Adhere to Betty coding style. 
-
-  - **Task 2: Simple Shell 0.1**  
-    Implement a basic shell with command execution. 
-
-  - **Task 3: Simple Shell 0.2**  
-    Handle commands with arguments. 
-
-  - **Task 4: Simple Shell 0.3**  
-    Implement PATH handling for locating commands. 
-
-  - **Task 5: Simple Shell 0.4**  
-    Implement the `exit` built-in. 
-
-  - **Task 6: Simple Shell 1.0**  
-    Implement the `env` built-in. 
-
-</details>
-
- 
- <details>
- 
-<summary> Click here to see the flowchart of the project: </summary> 
-
-
-```mermaid
-graph TD
-    A[Start Shell] --> B[Display Shell Prompt]
-    B --> C[Read User Input]
-    C --> D{Check for EOF / Exit?}
-    D -- No --> E[Parse Input]
-    D -- Yes --> K[Loop Back to Prompt]
-    E --> F{Built-in Command?}
-    F -- Yes --> G[Execute Built-in]
-    F -- No --> H[Search PATH & Find Full Path]
-    G --> K
-    H --> I[Execute Command with fork/execve]
-    I --> J[Wait for Process]
-    J --> K
-    K --> B
-```
- <br>
- <br>
-</details>
- <br/>
- <br/>
- 
- - **🌟 Advanced Task 7: Blog Post on `ls -l *.c`**  
-    Write a blog post about what happens when `ls -l *.c` is executed.
-
-  <div align="center">  <p style="text-align: center;">
-  <a href="https://www.linkedin.com/pulse/what-really-happens-when-you-type-ls-l-c-shell-hessah-a-yfeue">
-    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmM5MDI4ODlhc3Z5MDB4bGQ3OG1xZTQybTZsdWY1M3g3YnltazU5ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3Ksb1ZTUJ3n6tahT8O/giphy.gif" style="display: block; margin: 0 auto;" width="25%" height="25%" />
-  </a> </p></div
-</p>
-
-
----
-
-## 🏝️ How to Run
-
-1. Clone the repository:  
-   `git clone https://github.com/username/holbertonschool-simple_shell.git`
-
-2. Navigate into the directory:  
-   `cd holbertonschool-simple_shell`
-
-3. Compile the code:  
-   `gcc -Wall -Werror -Wextra -pedantic *.c -o shell`
-
-4. Run the shell:  
-   `./shell`
-
-
-
-## 🏝️ Usage
-```bash
-$ ./hsh
-$ ls
-$ pwd
-$ env
-$ exit
-```
 
 ---
 
