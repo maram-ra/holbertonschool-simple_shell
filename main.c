@@ -4,7 +4,7 @@ char **env;
 char *command;
 
 /**
- * print_env - prints environment variables
+ * print_env - print environment variables
  * Return: 0 on success
  */
 int print_env(void)
