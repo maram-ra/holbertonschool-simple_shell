@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- * printerror - prints command not found error
+ * printerror - print command not found error
  * @command: command inserted
  */
 void printerror(char *const command[])
