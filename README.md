@@ -2,6 +2,9 @@
  
  <dive></dive>
 
+ <br>
+ <br>
+
  <div align="center">
 
   #  ˖°𓇼🌊⋆🐚🫧 C - Simple Shell Project ˖°𓇼🌊⋆🐚🫧
@@ -20,10 +23,9 @@ This project implements a simple UNIX command-line interpreter (shell). It execu
 
 ---
 ## Tasks Overview ⤵️
- <details>
- 
-<summary> Tasks Breakdown List : </summary> 
 
+ 
+ Tasks Breakdown: 
   - **Task 0: README, man, AUTHORS**  
     Create a `README.md`, a `man` page, and an `AUTHORS` file. 
 
@@ -43,11 +45,17 @@ This project implements a simple UNIX command-line interpreter (shell). It execu
     Implement the `exit` built-in. 
 
   - **Task 6: Simple Shell 1.0**  
-    Implement the `env` built-in. 
+    Implement the `env` built-in.
 
-</details>
+     - **🌟 Advanced Task 7: Blog Post on `ls -l *.c`**  
+    Write a blog post about what happens when `ls -l *.c` is executed.
 
- <details>
+  <div align="center">  <p style="text-align: center;">
+  <a href="https://www.linkedin.com/pulse/what-really-happens-when-you-type-ls-l-c-shell-hessah-a-yfeue">
+    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmM5MDI4ODlhc3Z5MDB4bGQ3OG1xZTQybTZsdWY1M3g3YnltazU5ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3Ksb1ZTUJ3n6tahT8O/giphy.gif" style="display: block; margin: 0 auto;" width="25%" height="25%" />
+  </a> </p></div
+</p>
+
  
 <summary> Click here to see the flowchart of the project: </summary> 
 
@@ -75,14 +83,6 @@ graph TD
  <br/>
 
  
- - **🌟 Advanced Task 7: Blog Post on `ls -l *.c`**  
-    Write a blog post about what happens when `ls -l *.c` is executed.
-
-  <div align="center">  <p style="text-align: center;">
-  <a href="https://www.linkedin.com/pulse/what-really-happens-when-you-type-ls-l-c-shell-hessah-a-yfeue">
-    <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExNmM5MDI4ODlhc3Z5MDB4bGQ3OG1xZTQybTZsdWY1M3g3YnltazU5ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/3Ksb1ZTUJ3n6tahT8O/giphy.gif" style="display: block; margin: 0 auto;" width="25%" height="25%" />
-  </a> </p></div
-</p>
 
 
 ---
